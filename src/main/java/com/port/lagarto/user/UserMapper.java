@@ -5,9 +5,10 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface UserMapper {
+    int apiInsUser(UserEntity entity);
     int insUser(UserEntity entity);
     int selContactCount(UserEntity entity);
     int selUidCount(UserEntity entity);
     UserEntity selUser(UserEntity entity);
-    int facebookIns(UserEntity entity);
+    UserEntity facebookPk(UserEntity entity);
 }
