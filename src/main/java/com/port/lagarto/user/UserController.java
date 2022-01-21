@@ -24,12 +24,6 @@ public class UserController {
         model.addAttribute("title", "로그인");
     }
 
-    @PostMapping("/login")
-    @ResponseBody
-    public void loginProc(@RequestBody UserEntity entity) {
-        service.insUser(entity);
-    }
-
 
      @PostMapping("/login")
      @ResponseBody
