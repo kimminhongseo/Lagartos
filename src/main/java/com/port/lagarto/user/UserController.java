@@ -22,8 +22,12 @@ public class UserController {
     private Utils utils;
 
     @GetMapping("/login")
-    public void login(Model model) {
+    public String login(Model model) {
+        if (utils.getLoginUserPk() != 0){
+            return "redirect:/main/page";
+        }
         model.addAttribute("title", "로그인");
+        return "user/login";
     }
 
 
@@ -35,12 +39,11 @@ public class UserController {
         if (dbentity == null){
             String pw = Utils.randomPw();
             entity.setUpw(pw);
-
             service.apiInsUser(entity);
             return 1;
         }
         utils.setLoginUser(dbentity);
-        System.out.println(dbentity.getIuser());
+        System.out.println(utils.getLoginUserPk());
          return 0;
      }
 
