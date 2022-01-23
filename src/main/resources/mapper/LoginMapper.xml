@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.port.lagarto.user.UserMapper">
     <insert id="insUser" useGeneratedKeys="true" keyProperty="iuser">
-        INSERT INTO t_user
-        (iuser, email, name, upw)
+        INSERT INTO lararto_user
+        (iuser, uid, nm, upw)
         VALUES
-        (#{iuser}, #{email}, #{name}, #{upw})
+        (#{iuser}, #{uid}, #{nm}, #{upw})
     </insert>
 
     <select id="selUser" resultType="UserEntity">
-        SELECT * FROM t_user WHERE email = #{email}
+        SELECT * FROM lagarto_user WHERE uid = #{uid}
     </select>
 
     <insert id="facebookIns">

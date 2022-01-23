@@ -8,5 +8,11 @@
         WHERE A.board_type = ${board_type}
         ORDER BY A.iboard DESC
     </select>
+    <insert id="insCustomer">
+        INSERT INTO lararto_customer
+        (board_type, title, ctnt, ctnt_img, iuser)
+        VALUES
+        (${board_type}, #{title}, #{ctnt}, #{ctnt_img}, ${iuser})
+    </insert>
 
 </mapper>
