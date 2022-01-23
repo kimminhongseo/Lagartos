@@ -1,12 +1,6 @@
 {
     let btnLoginElem = document.querySelector('#btnLogin');
 
-    if (btnLoginElem) {
-        btnLoginElem.addEventListener('click', () => {
-            alert('실행');
-        });
-    }
-
 
     // 휴대전화 인증 페이지 (/user/certification) 이동
     let btnJoinElem = document.querySelector('#btnJoin');

@@ -3,6 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
+<c:if test="${sessionScope.loginUser != null}">
+    <div id="dupLogin"></div>
+</c:if>
+
 <div class="logoMain"><img class="logo" src="/res/img/Lagarto.PNG"></div>
 
 <form id="login" action="/user/login" method="post">
