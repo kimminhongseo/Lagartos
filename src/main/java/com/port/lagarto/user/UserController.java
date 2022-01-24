@@ -113,7 +113,6 @@ public class UserController {
         return result;
     }
 
-
     @GetMapping("/mypage")
     public void mypage(Model model) {
         model.addAttribute("title", "마이페이지");
