@@ -15,9 +15,7 @@
     <title>${title}</title>
 </head>
 <body>
-<div id="header">
-    <tiles:insertAttribute name="header" />
-</div>
+<div id="header"><tiles:insertAttribute name="header" /></div>
 <tiles:insertAttribute name="body"/>
 <div id="footer"><tiles:insertAttribute name="footer"/></div>
 </body>
