@@ -30,8 +30,6 @@ public class UserController {
         return "user/login";
     }
 
-
-
      @PostMapping("/apiLogin")
      @ResponseBody
      public int loginProc(@RequestBody UserEntity entity){
