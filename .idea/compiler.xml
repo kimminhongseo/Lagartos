@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="def_KYHS" />
         <module name="LAGARTO" />
+        <module name="Lagartos1진짜" />
       </profile>
     </annotationProcessing>
   </component>

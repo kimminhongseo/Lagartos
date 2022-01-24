@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.port.lagarto.auction.AuctionMapper">
+
+    <insert id="insAuction">
+        insert into auction
+        (icategory, title, ctnt, iuser, buy, imbuy)
+        values
+        (#{icategory}, #{title}, #{ctnt}, #{iuser}, #{buy}, #{imbuy})
+
+    </insert>
+
+    <select id="selAuctionList" resultType="AuctionVo">
+        select A.iboard, A.title, A.iuser, A.hits, A.images, A.ctnt , A.imbuy, A.buy,
+        B.nm as writernm
+        From auction A
+        Left join lagarto_user B
+        ON A.iuser = B.iuser
+        where A.isdel = 0
+        and A.icategory = ${icategory}
+        Order by A.iboard DESC
+
+    </select>
+
+</mapper>

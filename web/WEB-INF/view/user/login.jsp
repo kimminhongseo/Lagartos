@@ -2,6 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
+
+
+
 <div class="logoMain"><img class="logo" src="/res/img/Lagarto.PNG"></div>
 
 <form id="login" action="/user/login" method="post">
@@ -20,9 +23,24 @@
         </div>
     </div>
 </form>
+
 <div class="social">
     <div class="row row-cols-2">
-        <div class="col">네이버</div>
+        <div class="col">
+            <ul>
+                <li>
+                    <!-- 아래와같이 아이디를 꼭 써준다. -->
+                    <a id="naverIdLogin_loginButton" href="javascript:void(0)">
+                        <span>네이버 로그인</span>
+                    </a>
+                </li>
+                <li onclick="naverLogout(); return false;">
+                    <a href="javascript:void(0)">
+                        <span>네이버 로그아웃</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
         <div class="col">카카오톡</div>
         <div class="col">페이스북</div>
         <div class="col">구글</div>
@@ -42,5 +60,7 @@
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v12.0&appId=100077093453861" nonce="SiOBIhLG"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
+<!-- 네이버 스크립트 -->
+<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
 
 

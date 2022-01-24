@@ -15,4 +15,8 @@
 <!--    <insert id="facebookIns">-->
 <!--        UPDATE t_user SET nickname = #{nickname} WHERE iuser = #{iuser};-->
 <!--    </insert>-->
+
+    <!--네이버 적어봄-->
+
+
 </mapper>

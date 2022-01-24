@@ -2,8 +2,10 @@ package com.port.lagarto.model;
 
 import com.port.lagarto.enums.JoinResult;
 import lombok.Data;
+import lombok.Setter;
 
 @Data
+
 public class UserEntity {
     private int iuser;
     private String uid;
@@ -13,6 +15,7 @@ public class UserEntity {
     private String contact_first;
     private String contact_second;
     private String contact_third;
+
     private String profile_img;
     private String address_post;
     private String address_primary;
@@ -24,4 +27,12 @@ public class UserEntity {
     private String rdt;
 
     private JoinResult result;
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+    public void setNm(String nm) {
+        this.nm = nm;
+    }
+
 }

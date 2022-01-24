@@ -6,6 +6,7 @@
         <element id="directory" name="classes">
           <element id="module-output" name="LAGARTO" />
           <element id="module-output" name="def_KYHS" />
+          <element id="module-output" name="Lagartos1진짜" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.3.30.RELEASE" />
@@ -48,6 +49,10 @@
           <element id="library" level="project" name="Maven: org.springframework.social:spring-social-web:1.1.4.RELEASE" />
           <element id="library" level="project" name="Maven: javax.inject:javax.inject:1" />
           <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:4.0.1" />
+          <element id="library" level="project" name="Maven: com.github.scribejava:scribejava-core:2.8.1" />
+          <element id="library" level="project" name="Maven: com.googlecode.json-simple:json-simple:1.1.1" />
+          <element id="library" level="project" name="Maven: junit:junit:4.10" />
+          <element id="library" level="project" name="Maven: org.hamcrest:hamcrest-core:1.1" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="LAGARTO/web/Web" />
