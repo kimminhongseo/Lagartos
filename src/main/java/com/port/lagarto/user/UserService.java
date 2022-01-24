@@ -76,6 +76,16 @@ public class UserService {
         return result;
     }
 
+    public int uidCheck(UserEntity entity) {
+        int result = mapper.selUidCount(entity);
+
+        if (result > 0) {
+            entity.setResult(JoinResult.DUPLICATE_EMAIL);
+        }
+
+        return result;
+    }
+
     public UserEntity selUser(UserEntity entity){
         return mapper.selUser(entity);
     }

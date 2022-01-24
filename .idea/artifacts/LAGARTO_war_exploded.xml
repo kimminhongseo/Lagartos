@@ -5,7 +5,7 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="LAGARTO" />
-          <element id="module-output" name="def_KYHS" />
+          <element id="module-output" name="Lagartos" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.3.30.RELEASE" />
@@ -51,7 +51,7 @@
         </element>
       </element>
       <element id="javaee-facet-resources" facet="LAGARTO/web/Web" />
-      <element id="javaee-facet-resources" facet="def_KYHS/web/Web" />
+      <element id="javaee-facet-resources" facet="Lagartos/web/Web" />
     </root>
   </artifact>
 </component>
