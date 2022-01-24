@@ -19,7 +19,7 @@ public class CustomerController {
     @GetMapping("/list/{board_type}")
     public String list(@PathVariable int board_type, CustomerDto dto, Model model) {
         model.addAttribute("board_type", board_type);
-        model.addAttribute("list", service.selList(dto));
+        model.addAttribute("list", service.selCustomerList(dto));
         dto.setBoard_type(board_type);
         return "customer/list";
     }
@@ -32,4 +32,5 @@ public class CustomerController {
         int result = service.insCustomer(entity);
         return "redirect:/customer/list/" + entity.getBoard_type();
     }
+
 }

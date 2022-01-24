@@ -32,7 +32,6 @@
                             <c:when test="${requestScope.board_type == 1}">
                                 <td><c:out value="${item.productTitle}"/></td>
                             </c:when>
-                            <c:otherwise></c:otherwise>
                         </c:choose>
                         <td><c:out value="${item.title}"/></td>
                         <td><c:out value="${item.nickname}"/></td>

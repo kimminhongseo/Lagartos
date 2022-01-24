@@ -10,5 +10,5 @@ import java.util.List;
 @Mapper
 public interface CustomerMapper {
     int insCustomer(CustomerEntity entity);
-    List<CustomerVo> selList(CustomerDto dto);
+    List<CustomerVo> selCustomerList(CustomerDto dto);
 }
