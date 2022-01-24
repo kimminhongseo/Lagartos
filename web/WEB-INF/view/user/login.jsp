@@ -28,7 +28,7 @@
 <div class="social">
     <div class="row row-cols-2">
         <div class="col">네이버</div>
-        <div class="col">카카오톡</div>
+        <div class="col" onclick="loginWithKakao()"><img src="/res/img/kakao_login_medium.png"></div>
         <div class="col" onclick="fnFbCustomLogin();">
                     <a href="javascript:void(0)">
                         <span>Login with Facebook</span>
