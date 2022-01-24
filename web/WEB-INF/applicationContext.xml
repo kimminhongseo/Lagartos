@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<!-- <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
@@ -9,9 +9,12 @@
 
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3308/lagarto"/>
-        <property name="username" value="root"/>
-        <property name="password" value="koreait"/>
+<!--        <property name="jdbcUrl" value="jdbc:mysql://localhost:3308/lagarto"/>-->
+<!--        <property name="username" value="root"/>-->
+<!--        <property name="password" value="koreait"/>-->
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/lagarto"/>
+        <property name="username" value="korea"/>
+        <property name="password" value="zhfldk"/>
     </bean>
 
     <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
@@ -27,4 +30,4 @@
 
     <mybatis-spring:scan base-package="com.port.lagarto"/>
 
-</beans>
+</beans> -->

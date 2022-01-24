@@ -1,4 +1,4 @@
-<%@ page import="com.port.lagarto.Const" %>
+<!-- <%@ page import="com.port.lagarto.Const" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -30,10 +30,10 @@
                 </div>
 
                 <div class="btn_cont">
-                    <input class="object_button prop_light" type="button" value="취소">
+                    <input id="cancelBtn" class="object_button prop_light" type="button" value="취소">
                     <input class="object_button prop_dark" type="submit" value="인증하기">
                 </div>
             </div>
         </form>
     </div>
-</div>
+</div> -->

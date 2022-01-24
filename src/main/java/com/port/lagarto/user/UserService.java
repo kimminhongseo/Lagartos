@@ -26,20 +26,20 @@ public class UserService {
     private HttpSession hs;
 
 
-//    public int insUser(UserEntity entity){
-//        UserEntity result = null;
-//        try {
-//            result = mapper.selUser(entity);
-//            if (result == null){
-//                mapper.insUser(entity);
-//                result = mapper.selUser(entity);
-//            }
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//        hs.setAttribute(Const.LOGIN_USER, result);
-//        return 0;
-//    }
+    public int apiInsUser(UserEntity entity){
+        UserEntity result = null;
+        try {
+            result = mapper.selUser(entity);
+            if (result == null){
+                mapper.apiInsUser(entity);
+                result = mapper.selUser(entity);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        hs.setAttribute(Const.LOGIN_USER, result);
+        return 0;
+    }
 
     public int insUser(UserEntity entity) {
         UserEntity copyEntity = new UserEntity();
@@ -76,12 +76,22 @@ public class UserService {
         return result;
     }
 
+    public int uidCheck(UserEntity entity) {
+        int result = mapper.selUidCount(entity);
+
+        if (result > 0) {
+            entity.setResult(JoinResult.DUPLICATE_EMAIL);
+        }
+
+        return result;
+    }
+
     public UserEntity selUser(UserEntity entity){
         return mapper.selUser(entity);
     }
 
-    public int facebookIns(UserEntity entity){
+    public UserEntity facebookIns(UserEntity entity){
         entity.setIuser(utils.getLoginUserPk());
-        return mapper.facebookIns(entity);
+        return mapper.facebookPk(entity);
     }
 }

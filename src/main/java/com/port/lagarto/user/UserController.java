@@ -18,21 +18,30 @@ import java.util.Map;
 public class UserController {
     @Autowired //필요한 메소드 자동찾기
     private UserService service;
+    @Autowired
+    private Utils utils;
 
     @GetMapping("/login")
-    public void login(Model model) {
+    public String login(Model model) {
+        if (utils.getLoginUserPk() != 0){
+            return "redirect:/main/page";
+        }
         model.addAttribute("title", "로그인");
+        return "user/login";
     }
 
-     @PostMapping("/login")
+     @PostMapping("/apiLogin")
      @ResponseBody
      public int loginProc(@RequestBody UserEntity entity){
         UserEntity dbentity = service.selUser(entity);
         if (dbentity == null){
-            service.insUser(entity);
+            String pw = Utils.randomPw();
+            entity.setUpw(pw);
+            service.apiInsUser(entity);
             return 1;
         }
-         Utils.randomPw();
+        utils.setLoginUser(dbentity);
+        System.out.println(utils.getLoginUserPk());
          return 0;
      }
 
@@ -41,9 +50,9 @@ public class UserController {
 
     }
 
-    @ResponseBody
     @PostMapping("/certification")
-    public Map<String, Integer> certificationProc(@ModelAttribute("userEntity") UserEntity entity) {
+    @ResponseBody
+    public Map<String, Integer> certificationProc(@RequestBody @ModelAttribute("userEntity") UserEntity entity) {
         Map<String, Integer> result = new HashMap<>();
 
         // 중복된 번호
@@ -62,14 +71,19 @@ public class UserController {
         return result;
     }
 
+//    @GetMapping("/join")
+//    public String join(@ModelAttribute("userEntity") UserEntity entity, RedirectAttributes reAttr, Model model) {
+//        if (entity.getResult() == JoinResult.AVAILABLE_CONTACT) {
+//            model.addAttribute("title", "회원가입");
+//            return "/user/join";
+//        }
+//        reAttr.addFlashAttribute("err", "휴대전화 인증을 먼저 해주세요.");
+//        return "redirect:/user/certification";
+//    }
+
     @GetMapping("/join")
-    public String join(@ModelAttribute("userEntity") UserEntity entity, RedirectAttributes reAttr, Model model) {
-        if (entity.getResult() == JoinResult.AVAILABLE_CONTACT) {
-            model.addAttribute("title", "회원가입");
-            return "/user/join";
-        }
-        reAttr.addFlashAttribute("err", "휴대전화 인증을 먼저 해주세요.");
-        return "redirect:/user/certification";
+    public void join() {
+
     }
 
     @PostMapping("/join")
@@ -78,6 +92,28 @@ public class UserController {
         service.facebookIns(entity);
     }
 
+    @PostMapping("/uidChk")
+    @ResponseBody
+    public Map<String, Integer> emailCount(@RequestBody UserEntity entity) {
+        Map<String, Integer> result = new HashMap<>();
+        System.out.println("uid : " + entity.getUid());
+        result.put("result", service.uidCheck(entity));
+        return result;
+    }
 
+
+    @PostMapping("/contChk")
+    @ResponseBody
+    public Map<String, Integer> countPost(@RequestBody UserEntity entity) {
+        Map<String, Integer> result = new HashMap<>();
+        System.out.println("contact : " + entity.getContact_first() + entity.getContact_second() + entity.getContact_third());
+        result.put("result", service.contactCheck(entity));
+        return result;
+    }
+
+    @GetMapping("/mypage")
+    public void mypage(Model model) {
+        model.addAttribute("title", "마이페이지");
+    }
 }
 
