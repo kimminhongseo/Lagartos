@@ -13,7 +13,7 @@
 
     if (btnJoinElem) {
         btnJoinElem.addEventListener('click', () => {
-            openJoinWin();
+            location.href='/user/join';
         })
     }
 
