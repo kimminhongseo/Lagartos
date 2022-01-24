@@ -20,4 +20,19 @@
         FROM `lagarto`.`lagarto_user`
         WHERE `uid` = #{uid}
     </select>
+
+    <insert id="apiInsUser" useGeneratedKeys="true" keyProperty="iuser">
+        INSERT INTO t_user
+            (iuser, email, name, upw)
+        VALUES
+            (#{iuser}, #{email}, #{name}, #{upw})
+    </insert>
+
+    <select id="selUser" resultType="UserEntity">
+        SELECT * FROM t_user WHERE email = #{email}
+    </select>
+
+    <insert id="facebookPk">
+        UPDATE t_user SET nickname = #{nickname} WHERE email = #{email};
+    </insert>
 </mapper>

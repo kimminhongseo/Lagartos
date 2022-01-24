@@ -18,23 +18,34 @@ import java.util.Map;
 public class UserController {
     @Autowired //필요한 메소드 자동찾기
     private UserService service;
+    @Autowired
+    private Utils utils;
 
     @GetMapping("/login")
-    public void login(Model model) {
+    public String login(Model model) {
+        if (utils.getLoginUserPk() != 0){
+            return "redirect:/main/page";
+        }
         model.addAttribute("title", "로그인");
+        return "user/login";
     }
 
-    @PostMapping("/login")
-    @ResponseBody
-    public int loginProc(@RequestBody UserEntity entity) {
+
+
+     @PostMapping("/apiLogin")
+     @ResponseBody
+     public int loginProc(@RequestBody UserEntity entity){
         UserEntity dbentity = service.selUser(entity);
-        if (dbentity == null) {
-            service.insUser(entity);
+        if (dbentity == null){
+            String pw = Utils.randomPw();
+            entity.setUpw(pw);
+            service.apiInsUser(entity);
             return 1;
         }
-        Utils.randomPw();
-        return 0;
-    }
+        utils.setLoginUser(dbentity);
+        System.out.println(utils.getLoginUserPk());
+         return 0;
+     }
 
     @GetMapping("/certification")
     public void certification() {
@@ -103,5 +114,9 @@ public class UserController {
     }
 
 
+    @GetMapping("/mypage")
+    public void mypage(Model model) {
+        model.addAttribute("title", "마이페이지");
+    }
 }
 
