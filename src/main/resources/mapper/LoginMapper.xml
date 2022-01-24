@@ -13,6 +13,6 @@
     </select>
 
     <insert id="facebookIns">
-        UPDATE t_user SET nickname = #{nickname} WHERE iuser = #{iuser};
+        UPDATE `lagarto`.`t_user` SET `nickname` = #{nickname} WHERE `iuser` = #{iuser};
     </insert>
 </mapper>

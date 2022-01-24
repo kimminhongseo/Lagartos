@@ -28,22 +28,22 @@ public class UserController {
      @ResponseBody
      public int loginProc(@RequestBody UserEntity entity){
         UserEntity dbentity = service.selUser(entity);
-        if (dbentity == null){
+        if (dbentity == null) {
             service.insUser(entity);
             return 1;
         }
-         Utils.randomPw();
-         return 0;
-     }
+        Utils.randomPw();
+        return 0;
+    }
 
     @GetMapping("/certification")
     public void certification() {
 
     }
 
-    @ResponseBody
     @PostMapping("/certification")
-    public Map<String, Integer> certificationProc(@ModelAttribute("userEntity") UserEntity entity) {
+    @ResponseBody
+    public Map<String, Integer> certificationProc(@RequestBody @ModelAttribute("userEntity") UserEntity entity) {
         Map<String, Integer> result = new HashMap<>();
 
         // 중복된 번호
@@ -62,20 +62,44 @@ public class UserController {
         return result;
     }
 
+//    @GetMapping("/join")
+//    public String join(@ModelAttribute("userEntity") UserEntity entity, RedirectAttributes reAttr, Model model) {
+//        if (entity.getResult() == JoinResult.AVAILABLE_CONTACT) {
+//            model.addAttribute("title", "회원가입");
+//            return "/user/join";
+//        }
+//        reAttr.addFlashAttribute("err", "휴대전화 인증을 먼저 해주세요.");
+//        return "redirect:/user/certification";
+//    }
+
     @GetMapping("/join")
-    public String join(@ModelAttribute("userEntity") UserEntity entity, RedirectAttributes reAttr, Model model) {
-        if (entity.getResult() == JoinResult.AVAILABLE_CONTACT) {
-            model.addAttribute("title", "회원가입");
-            return "/user/join";
-        }
-        reAttr.addFlashAttribute("err", "휴대전화 인증을 먼저 해주세요.");
-        return "redirect:/user/certification";
+    public void join() {
+
     }
 
     @PostMapping("/join")
     public void joinProc(UserEntity entity) {
         System.out.println(entity.getNickname());
         service.facebookIns(entity);
+    }
+
+    @PostMapping("/uidChk")
+    @ResponseBody
+    public Map<String, Integer> emailCount(@RequestBody UserEntity entity) {
+        Map<String, Integer> result = new HashMap<>();
+        System.out.println("uid : " + entity.getUid());
+        result.put("result", service.uidCheck(entity));
+        return result;
+    }
+
+
+    @PostMapping("/contChk")
+    @ResponseBody
+    public Map<String, Integer> countPost(@RequestBody UserEntity entity) {
+        Map<String, Integer> result = new HashMap<>();
+        System.out.println("contact : " + entity.getContact_first() + entity.getContact_second() + entity.getContact_third());
+        result.put("result", service.contactCheck(entity));
+        return result;
     }
 
 
