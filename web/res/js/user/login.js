@@ -1,12 +1,6 @@
 {
     let btnLoginElem = document.querySelector('#btnLogin');
 
-    if (btnLoginElem) {
-        btnLoginElem.addEventListener('click', () => {
-            alert('실행');
-        });
-    }
-
 
     // 휴대전화 인증 페이지 (/user/certification) 이동
     let btnJoinElem = document.querySelector('#btnJoin');
@@ -35,7 +29,7 @@
         FB.login(function (response) {
             if (response.status === 'connected') {
                 FB.api('/me', 'get', {fields: 'name,email'}, function (r) {
-                    let url = '/user/login';
+                    let url = '/user/apiLogin';
                     console.log(r);
 
                     fetch(url, {
@@ -44,8 +38,16 @@
                         body: JSON.stringify(r)
                     }).then(function (res) {
                         return res.json();
-                    })
-                    location.href = "/user/join";
+                    }).then(hh => {
+                        switch (hh){
+                            case 1:
+                                location.href = "http://localhost:8090/user/join"
+                                break;
+                            case 0:
+                                location.href = "http://localhost:8090/page/main"
+                                break;
+                        }
+                    });
                 })
             } else if (response.status === 'not_authorized') {
                 // 사람은 Facebook에 로그인했지만 앱에는 로그인하지 않았습니다.
@@ -59,7 +61,7 @@
 
     window.fbAsyncInit = function () {
         FB.init({
-            appId      : '100077093453861', // 내 앱 ID를 입력한다.
+            appId      : '612308656721361', // 내 앱 ID를 입력한다.
             cookie     : true,
             xfbml      : true,
             version    : 'v12.0'
