@@ -45,15 +45,27 @@ public class UserService {
         UserEntity copyEntity = new UserEntity();
         BeanUtils.copyProperties(entity, copyEntity);
 
+        // 필수 약관동의 체크
+        if (copyEntity.getDesc() != 1) {
+            copyEntity.setResult(JoinResult.FAILURE);
+            return 0;
+        }
+
         // 아이디 정규식 체크
-        if (Const.checkUid(entity.getUid())) {
+        if (Const.checkUid(copyEntity.getUid())) {
             copyEntity.setResult(JoinResult.FAILURE);
             return 0;
         }
 
         // 아이디 중복 체크
-        if (mapper.selUidCount(entity) > 0) {
+        if (mapper.selUidCount(copyEntity) > 0) {
             copyEntity.setResult(JoinResult.DUPLICATE_EMAIL);
+            return 0;
+        }
+
+        // 비밀번호 중복 체크
+        if (mapper.selContactCount(copyEntity) > 0) {
+            copyEntity.setResult(JoinResult.DUPLICATE_CONTACT);
             return 0;
         }
 

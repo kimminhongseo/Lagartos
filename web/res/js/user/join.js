@@ -15,15 +15,16 @@
         }
     }
 
-    joinForm['uid'].addEventListener('keyup', (e) => {
+    joinForm['uid'].addEventListener('focusout', (e) => {
         e.preventDefault();
 
         const uidRegex = joinForm['uid'].dataset.regex;
         const uidVal = joinForm['uid'].value
+        const emailWarning = joinForm.querySelector('[rel="email-warning"]');
         if (uidRegex !== undefined) {
             let regex = new RegExp(uidRegex);
             if (!regex.test(uidVal)) {
-                alert('이메일을 다시 확인해 주세요.');
+                emailWarning.innerText = '이메일을 다시 확인해 주세요.';
                 return false;
             }
         }
@@ -115,8 +116,7 @@
                 switch (data.result) {
                     case 0 :
                         console.log('result - 0');
-                        alert('회원가입에 성공하였습니다.')
-                        window.location.href('/user/login');
+                        onsubmit();
                         break;
                     case 1 :
                         console.log('result - 1');
