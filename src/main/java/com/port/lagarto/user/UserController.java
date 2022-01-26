@@ -34,7 +34,7 @@ public class UserController {
 
      @PostMapping("/apiLogin")
      @ResponseBody
-     public int loginProc(@RequestBody UserEntity entity){
+     public int apiLoginProc(@RequestBody UserEntity entity){
         UserEntity dbentity = service.selUser(entity);
         if (dbentity == null){
             String pw = Utils.randomPw();
@@ -89,7 +89,20 @@ public class UserController {
     }
 
     @PostMapping("/join")
-    public void joinProc(UserEntity entity) {
+    public String joinProc(UserEntity entity, RedirectAttributes reAttr) {
+        int result = service.insUser(entity);
+
+        if (!(result == 1 && entity.getResult() == JoinResult.SUCCESS)) {
+            reAttr.addFlashAttribute("err", "회원가입에 실패하였습니다.");
+            System.out.println("회원가입 실패");
+        }
+        System.out.println("회원가입 성공");
+
+        return "redirect:/user/login";
+    }
+
+    @PostMapping("/apiJoin")
+    public void apiJoinProc(UserEntity entity) {
         System.out.println(entity.getNickname());
         service.facebookIns(entity);
     }
@@ -106,7 +119,7 @@ public class UserController {
 
     @PostMapping("/contChk")
     @ResponseBody
-    public Map<String, Integer> countPost(@RequestBody UserEntity entity) {
+    public Map<String, Integer> contactCount(@RequestBody UserEntity entity) {
         Map<String, Integer> result = new HashMap<>();
         System.out.println("contact : " + entity.getContact_first() + entity.getContact_second() + entity.getContact_third());
         result.put("result", service.contactCheck(entity));

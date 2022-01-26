@@ -127,9 +127,9 @@ input[type="checkbox"]:checked + label{
 
 span.warning {
     color: #f75858;
-    display: inline-block;
+    display: block;
     font-size: 0.85rem;
-    margin: 0.3rem;
+    margin: 0.3rem 1rem;
 }
 
 span.warning.visible {
