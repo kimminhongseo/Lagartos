@@ -25,4 +25,9 @@ public class CustomerService {
     public List<CustomerVo> selCustomerList(CustomerDto dto) {
         return mapper.selCustomerList(dto);
     }
+
+    public CustomerVo selCustomerDetail(CustomerDto dto) {
+        CustomerVo detail = mapper.selCustomerDetail(dto);
+        return detail;
+    }
 }

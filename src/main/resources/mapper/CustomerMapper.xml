@@ -4,22 +4,23 @@
 
     <insert id="insCustomer">
         INSERT INTO lararto_customer
-        (board_type, title, ctnt, ctnt_img, iuser)
+        (board_num, title, ctnt, ctnt_img, iuser)
         VALUES
-        (${board_type}, #{title}, #{ctnt}, #{ctnt_img}, ${iuser})
+        (${board_num}, #{title}, #{ctnt}, #{ctnt_img}, ${iuser})
     </insert>
 
     <select id="selCustomerList" resultType="CustomerVo">
         SELECT A.* , B.nickname, C.title AS productTitle, C.iboard FROM lagarto_customer A
         INNER JOIN lagarto_user B ON A.iuser = B.iuser
         LEFT JOIN lagarto_main C ON A.product_num = C.iboard
-        WHERE A.board_type = ${board_type}
+        WHERE A.board_num = ${board_num}
         ORDER BY A.iboard DESC
     </select>
 
     <select id="selCustomerDetail" resultType="CustomerVo">
-        SELECT A.*, B.nickname, C.title AS productTitle, C.iboard,  FROM lagarto_customer A
+        SELECT A.*, B.nickname, C.board_name FROM lagarto_customer A
         LEFT JOIN lagarto_user B ON A.iuser = B.iuser
-        LEFT JOIN
+        LEFT JOIN lagarto_board_type C ON A.board_num = C.board_num
+        WHERE A.iboard = ${iboard}
     </select>
 </mapper>

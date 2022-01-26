@@ -102,7 +102,7 @@
                     uid: res.kakao_account.email,
                     nm: res.kakao_account.profile.nickname
                 }
-                let url = '/user/login';
+                let url = '/user/apiLogin';
                 console.log(kakao_user_info);
 
                 fetch(url, {
@@ -111,8 +111,16 @@
                     body : JSON.stringify(kakao_user_info)
                 }).then(function (res){
                     return res.json();
+                }).then(hh => {
+                    switch (hh) {
+                        case 1:
+                            location.href = "http://localhost:8090/user/join"
+                            break;
+                        case 0:
+                            location.href = "http://localhost:8090/page/main"
+                            break;
+                    }
                 })
-                location.href = "/user/join";
             },
             fail: function (error) {
                 alert('카카오 로그인에 실패했습니다. 관리자에게 문의하세요.' + JSON.stringify(error));
