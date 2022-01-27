@@ -53,15 +53,13 @@ public class UserService {
         }
 
         // 아이디 정규식 체크
-        if (!Const.checkUid(copyEntity.getUid())) {
-            System.out.println("uid regex check err");
+        if (Const.checkUid(entity.getUid())) {
             copyEntity.setResult(JoinResult.FAILURE);
             return 0;
         }
 
         // 아이디 중복 체크
-        if (mapper.selUidCount(copyEntity) > 0) {
-            System.out.println("uid duplicate check err");
+        if (mapper.selUidCount(entity) > 0) {
             copyEntity.setResult(JoinResult.DUPLICATE_EMAIL);
             return 0;
         }
@@ -103,6 +101,27 @@ public class UserService {
         return result;
     }
 
+    public int loginSel(UserEntity entity){
+        UserEntity dbUser = null;
+        try {
+            System.out.println(entity.getUid());
+            entity.setUpw(BCrypt.hashpw(entity.getUpw(), BCrypt.gensalt()));
+            System.out.println(entity.getUpw());
+            dbUser = mapper.loginSel(entity);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0; //알 수 없는 에러
+        }
+        if(dbUser != null) {
+            if(BCrypt.checkpw(entity.getUpw(), dbUser.getUpw())) {
+                dbUser.setUpw(null);
+                utils.setLoginUser(dbUser);
+                return 1; //로그인 성공
+            }
+        }
+        return 2;//로그인 실패
+    }
+
     public UserEntity selUser(UserEntity entity){
         return mapper.selUser(entity);
     }
@@ -111,4 +130,8 @@ public class UserService {
         entity.setIuser(utils.getLoginUserPk());
         return mapper.facebookPk(entity);
     }
+
+
+
+
 }

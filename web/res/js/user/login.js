@@ -1,6 +1,38 @@
-{
-    let btnLoginElem = document.querySelector('#btnLogin');
 
+
+
+{
+    let btnUserElem = document.querySelector('#btnUser');
+    let btnLoginElem = btnUserElem.querySelector('#btnLogin');
+    let loginElem = document.querySelector('#login');
+    let formId = loginElem.querySelector('#formId');
+    let formPw = loginElem.querySelector('#formPw');
+
+
+    if (btnLoginElem){
+        btnLoginElem.disabled = 'disabled';
+        formId.addEventListener('keyup', () =>{
+                formPw.addEventListener('keyup', () =>{
+                    if (formId.value !== '' || formPw.value !== ''){
+                        btnLoginElem.disabled = false;
+                    }
+                });
+        });
+        formPw.addEventListener('keyup', () =>{
+        formId.addEventListener('keyup', () =>{
+                if (formId.value !== '' || formPw.value !== ''){
+                    btnLoginElem.disabled = false;
+                }
+            });
+        });
+
+    }
+
+    if (btnUserElem){
+        btnLoginElem.addEventListener('click', (e) =>{
+            btnLoginElem.type = 'submit';
+        });
+    }
 
     // 휴대전화 인증 페이지 (/user/certification) 이동
     let btnJoinElem = document.querySelector('#btnJoin');
@@ -41,7 +73,7 @@
                     }).then(hh => {
                         switch (hh){
                             case 1:
-                                location.href = "http://localhost:8090/user/join"
+                                location.href = "http://localhost:8090/user/certification"
                                 break;
                             case 0:
                                 location.href = "http://localhost:8090/page/main"
@@ -99,10 +131,10 @@
                 console.log(res);
                 // 이메일, 닉네임
                 const kakao_user_info = {
-                    email: res.kakao_account.email,
-                    name: res.kakao_account.profile.nickname
+                    uid: res.kakao_account.email,
+                    nm: res.kakao_account.profile.nickname
                 }
-                let url = '/user/login';
+                let url = '/user/apiLogin';
                 console.log(kakao_user_info);
 
                 fetch(url, {
@@ -111,8 +143,16 @@
                     body : JSON.stringify(kakao_user_info)
                 }).then(function (res){
                     return res.json();
+                }).then(hh => {
+                    switch (hh) {
+                        case 1:
+                            location.href = "http://localhost:8090/user/join"
+                            break;
+                        case 0:
+                            location.href = "http://localhost:8090/page/main"
+                            break;
+                    }
                 })
-                location.href = "/user/join";
             },
             fail: function (error) {
                 alert('카카오 로그인에 실패했습니다. 관리자에게 문의하세요.' + JSON.stringify(error));
@@ -130,4 +170,15 @@
             alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken());
         });
     }
+
+
+    //네이버
+    var naver_id_login = new naver_id_login("Olu165BkwTiB1vNvozvn", "http://localhost:8090/user/callback");
+    var state = naver_id_login.getUniqState();
+    naver_id_login.setButton("white", 2,40);
+    naver_id_login.setDomain("http://localhost:8090/user/login");
+    naver_id_login.setState(state);
+    naver_id_login.setPopup();
+    naver_id_login.init_naver_id_login();
+
 }

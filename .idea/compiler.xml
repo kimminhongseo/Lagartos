@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Lagartos" />
         <module name="LAGARTO" />
+        <module name="Lagartos1진짜" />
       </profile>
     </annotationProcessing>
   </component>

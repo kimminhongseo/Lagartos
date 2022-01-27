@@ -12,4 +12,5 @@ public interface UserMapper {
     int isDesc(UserEntity entity);
     UserEntity selUser(UserEntity entity);
     UserEntity facebookPk(UserEntity entity);
+    UserEntity loginSel(UserEntity entity);
 }

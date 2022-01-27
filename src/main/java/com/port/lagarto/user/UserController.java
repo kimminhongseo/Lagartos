@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,9 +34,10 @@ public class UserController {
 
 
 
+
      @PostMapping("/apiLogin")
      @ResponseBody
-     public int apiLoginProc(@RequestBody UserEntity entity){
+     public int loginProc(@RequestBody UserEntity entity){
         UserEntity dbentity = service.selUser(entity);
         if (dbentity == null){
             String pw = Utils.randomPw();
@@ -48,14 +50,14 @@ public class UserController {
          return 0;
      }
 
-    @GetMapping("/certification")
+    @GetMapping("/eodyd/certification")
     public void certification() {
 
     }
 
-    @PostMapping("/certification")
     @ResponseBody
-    public Map<String, Integer> certificationProc(@RequestBody @ModelAttribute("userEntity") UserEntity entity) {
+    @PostMapping("/certification")
+    public Map<String, Integer> certificationProc(@ModelAttribute("userEntity") UserEntity entity) {
         Map<String, Integer> result = new HashMap<>();
 
         // 중복된 번호
@@ -75,8 +77,7 @@ public class UserController {
     }
 
     @GetMapping("/join")
-    public void join(Model model) {
-    }
+    public void join(Model model) {}
 
     @PostMapping("/join")
     public String joinProc(UserEntity entity, Model model) {
