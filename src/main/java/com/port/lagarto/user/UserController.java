@@ -30,9 +30,11 @@ public class UserController {
         return "user/login";
     }
 
+
+
      @PostMapping("/apiLogin")
      @ResponseBody
-     public int apiLoginProc(@RequestBody UserEntity entity){
+     public int loginProc(@RequestBody UserEntity entity){
         UserEntity dbentity = service.selUser(entity);
         if (dbentity == null){
             String pw = Utils.randomPw();
@@ -45,14 +47,14 @@ public class UserController {
          return 0;
      }
 
-    @GetMapping("/certification")
+    @GetMapping("/eodyd/certification")
     public void certification() {
 
     }
 
-    @PostMapping("/certification")
     @ResponseBody
-    public Map<String, Integer> certificationProc(@RequestBody @ModelAttribute("userEntity") UserEntity entity) {
+    @PostMapping("/certification")
+    public Map<String, Integer> certificationProc(@ModelAttribute("userEntity") UserEntity entity) {
         Map<String, Integer> result = new HashMap<>();
 
         // 중복된 번호
@@ -71,19 +73,14 @@ public class UserController {
         return result;
     }
 
-//    @GetMapping("/join")
-//    public String join(@ModelAttribute("userEntity") UserEntity entity, RedirectAttributes reAttr, Model model) {
-//        if (entity.getResult() == JoinResult.AVAILABLE_CONTACT) {
-//            model.addAttribute("title", "회원가입");
-//            return "/user/join";
-//        }
-//        reAttr.addFlashAttribute("err", "휴대전화 인증을 먼저 해주세요.");
-//        return "redirect:/user/certification";
-//    }
-
     @GetMapping("/join")
-    public void join() {
-
+    public String join(@ModelAttribute("userEntity") UserEntity entity, RedirectAttributes reAttr, Model model) {
+        if (entity.getResult() == JoinResult.AVAILABLE_CONTACT) {
+            model.addAttribute("title", "회원가입");
+            return "/user/join";
+        }
+        reAttr.addFlashAttribute("err", "휴대전화 인증을 먼저 해주세요.");
+        return "redirect:/user/certification";
     }
 
     @PostMapping("/join")

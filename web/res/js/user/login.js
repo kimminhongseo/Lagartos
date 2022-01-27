@@ -1,6 +1,35 @@
 {
-    let btnLoginElem = document.querySelector('#btnLogin');
+    let btnUserElem = document.querySelector('#btnUser');
+    let btnLoginElem = btnUserElem.querySelector('#btnLogin');
+    let loginElem = document.querySelector('#login');
+    let formId = loginElem.querySelector('#formId');
+    let formPw = loginElem.querySelector('#formPw');
 
+
+    if (btnLoginElem){
+        btnLoginElem.disabled = 'disabled';
+        formId.addEventListener('keyup', () =>{
+                formPw.addEventListener('keyup', () =>{
+                    if (formId.value !== '' || formPw.value !== ''){
+                        btnLoginElem.disabled = false;
+                    }
+                });
+        });
+        formPw.addEventListener('keyup', () =>{
+        formId.addEventListener('keyup', () =>{
+                if (formId.value !== '' || formPw.value !== ''){
+                    btnLoginElem.disabled = false;
+                }
+            });
+        });
+
+    }
+
+    if (btnUserElem){
+        btnLoginElem.addEventListener('click', (e) =>{
+            btnLoginElem.type = 'submit';
+        });
+    }
 
     // 휴대전화 인증 페이지 (/user/certification) 이동
     let btnJoinElem = document.querySelector('#btnJoin');
@@ -41,7 +70,7 @@
                     }).then(hh => {
                         switch (hh){
                             case 1:
-                                location.href = "http://localhost:8090/user/join"
+                                location.href = "http://localhost:8090/user/certification"
                                 break;
                             case 0:
                                 location.href = "http://localhost:8090/page/main"
