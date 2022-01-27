@@ -15,8 +15,10 @@
     <title>${title}</title>
 </head>
 <body>
-<div id="header"><tiles:insertAttribute name="header" /></div>
-<tiles:insertAttribute name="body"/>
+<div id="header">
+    <tiles:insertAttribute name="header" />
+</div>
+<div id="container"><tiles:insertAttribute name="body"/></div>
 <div id="footer"><tiles:insertAttribute name="footer"/></div>
 </body>
 <%--테스트--%>

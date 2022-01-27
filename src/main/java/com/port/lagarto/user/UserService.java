@@ -45,6 +45,13 @@ public class UserService {
         UserEntity copyEntity = new UserEntity();
         BeanUtils.copyProperties(entity, copyEntity);
 
+        // 필수 약관동의 체크
+        if (!(copyEntity.getDisc_agree_a() == 1 && copyEntity.getDisc_agree_b() == 1)) {
+            System.out.println("desc err");
+            copyEntity.setResult(JoinResult.FAILURE);
+            return 0;
+        }
+
         // 아이디 정규식 체크
         if (Const.checkUid(entity.getUid())) {
             copyEntity.setResult(JoinResult.FAILURE);
@@ -57,8 +64,16 @@ public class UserService {
             return 0;
         }
 
+        // 전화번호 중복 체크
+        if (mapper.selContactCount(copyEntity) > 0) {
+            System.out.println("contact check err");
+            copyEntity.setResult(JoinResult.DUPLICATE_CONTACT);
+            return 0;
+        }
+
         String hashUpw = BCrypt.hashpw(copyEntity.getUpw(), BCrypt.gensalt());
         copyEntity.setUpw(hashUpw);
+        System.out.println(hashUpw);
 
         copyEntity.setResult(JoinResult.SUCCESS);
         return mapper.insUser(copyEntity);
@@ -73,6 +88,16 @@ public class UserService {
         }
 
         entity.setResult(JoinResult.AVAILABLE_CONTACT);
+        return result;
+    }
+
+    public int uidCheck(UserEntity entity) {
+        int result = mapper.selUidCount(entity);
+
+        if (result > 0) {
+            entity.setResult(JoinResult.DUPLICATE_EMAIL);
+        }
+
         return result;
     }
 

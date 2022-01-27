@@ -23,8 +23,9 @@ public class UserEntity {
     private String address_post;
     private String address_primary;
     private String address_secondary;
-    private int desc;
-    private int desc_choose;
+    private int disc_agree_a;
+    private int disc_agree_b;
+    private int disc_agree_c;
     private int level;
     private int level_bar;
     private String rdt;

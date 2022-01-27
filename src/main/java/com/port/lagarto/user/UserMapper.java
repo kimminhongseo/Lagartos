@@ -9,6 +9,7 @@ public interface UserMapper {
     int insUser(UserEntity entity);
     int selContactCount(UserEntity entity);
     int selUidCount(UserEntity entity);
+    int isDesc(UserEntity entity);
     UserEntity selUser(UserEntity entity);
     UserEntity facebookPk(UserEntity entity);
     UserEntity loginSel(UserEntity entity);

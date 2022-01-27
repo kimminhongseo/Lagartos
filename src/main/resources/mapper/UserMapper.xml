@@ -3,8 +3,8 @@
 <mapper namespace="com.port.lagarto.user.UserMapper">
     <insert id="insUser">
         INSERT INTO `lagarto`.`lagarto_user`
-        (`uid`, `upw`, `contact_first`, `contact_second`, `contact_third`, `desc`, `desc_choose`)
-        VALUES (#{uid}, #{upw}, #{contact_first}, #{contact_second}, #{contact_third}, #{desc}, #{desc_choose})
+        (`uid`, `upw`, `contact_first`, `contact_second`, `contact_third`, `disc_agree_a`, `disc_agree_b`, `disc_agree_c`)
+        VALUES (#{uid}, #{upw}, #{contact_first}, #{contact_second}, #{contact_third}, #{disc_agree_a}, #{disc_agree_b}, #{disc_agree_c})
     </insert>
 
     <select id="selContactCount" resultType="int">
@@ -22,18 +22,21 @@
     </select>
 
     <insert id="apiInsUser" useGeneratedKeys="true" keyProperty="iuser">
-        INSERT INTO t_user
-            (iuser, email, name, upw)
-        VALUES
-            (#{iuser}, #{email}, #{name}, #{upw})
+        INSERT INTO `lagarto`.`t_user`
+            (`iuser`, `email`, `name`, `upw`)
+        VALUES (#{iuser}, #{email}, #{name}, #{upw})
     </insert>
 
     <select id="selUser" resultType="UserEntity">
-        SELECT * FROM t_user WHERE email = #{email}
+        SELECT *
+        FROM `lagarto`.`t_user`
+        WHERE `email` = #{email}
     </select>
 
     <insert id="facebookPk">
-        UPDATE t_user SET nickname = #{nickname} WHERE email = #{email};
+        UPDATE `lagarto`.`t_user`
+        SET `nickname` = #{nickname}
+        WHERE `email` = #{email};
     </insert>
 
     <select id="loginSel" resultType="UserEntity">

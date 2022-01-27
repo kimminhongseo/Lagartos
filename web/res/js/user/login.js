@@ -36,7 +36,7 @@
 
     if (btnJoinElem) {
         btnJoinElem.addEventListener('click', () => {
-            openJoinWin();
+            location.href='/user/join';
         })
     }
 
@@ -128,8 +128,8 @@
                 console.log(res);
                 // 이메일, 닉네임
                 const kakao_user_info = {
-                    email: res.kakao_account.email,
-                    name: res.kakao_account.profile.nickname
+                    uid: res.kakao_account.email,
+                    nm: res.kakao_account.profile.nickname
                 }
                 let url = '/user/login';
                 console.log(kakao_user_info);
