@@ -4,7 +4,7 @@
 <header>
     <nav class="nav">
         <ul class="gnb">
-            <li><a href="/auction/list/0">도마뱀</a>
+            <li><a href="/auction/list">도마뱀</a>
                 <ul class="lnb">
                     <li><a href="/auction/list/1">1</a></li>
                     <li><a href="/auction/list/2">2</a></li>

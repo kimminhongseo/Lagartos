@@ -26,6 +26,14 @@ public class AuctionController {
         return "redirect:/auction/list/" + entity.getIcategory(); //경매등록 눌렀을때 가는곳
         //
     }
+    //todo: 확인해보기 list에 전체적인 내용
+    @GetMapping("/list")
+    public String list(AuctionEntity entity, Model model){
+
+        model.addAttribute("list",service.selAuctionListAll(entity));
+        return "auction/list";
+    }
+
 
     @GetMapping("/list/{icategory}")
     public String list(@PathVariable int icategory, AuctionEntity entity, Model model){
@@ -35,6 +43,8 @@ public class AuctionController {
         return "auction/list";
 
     }
+
+
 
 
 

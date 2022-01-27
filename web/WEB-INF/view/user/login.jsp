@@ -27,19 +27,8 @@
 <div class="social">
     <div class="row row-cols-2">
         <div class="col">
-            <ul>
-                <li>
-                    <!-- 아래와같이 아이디를 꼭 써준다. -->
-                    <a id="naverIdLogin_loginButton" href="javascript:void(0)">
-                        <span>네이버 로그인</span>
-                    </a>
-                </li>
-                <li onclick="naverLogout(); return false;">
-                    <a href="javascript:void(0)">
-                        <span>네이버 로그아웃</span>
-                    </a>
-                </li>
-            </ul>
+            <!-- 네이버 로그인 버튼 노출 영역 -->
+            <div id="naver_id_login"></div>
         </div>
         <div class="col">카카오톡</div>
         <div class="col">페이스북</div>
@@ -62,5 +51,10 @@
 
 <!-- 네이버 스크립트 -->
 <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+
+<!--네이버-->
 
 

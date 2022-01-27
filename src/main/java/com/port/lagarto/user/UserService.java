@@ -84,4 +84,8 @@ public class UserService {
         entity.setIuser(utils.getLoginUserPk());
         return mapper.facebookIns(entity);
     }
+
+
+
+
 }

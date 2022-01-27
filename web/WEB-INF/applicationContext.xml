@@ -25,6 +25,8 @@
     </bean>
 
 
+
+
     <mybatis-spring:scan base-package="com.port.lagarto"/>
 
 </beans>
