@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
 @Service
 public class CustomerService {
+
     @Autowired
     private CustomerMapper mapper;
 
@@ -22,5 +24,12 @@ public class CustomerService {
         return mapper.insCustomer(entity);
     }
 
-    public List<CustomerVo> selList(CustomerDto dto) { return mapper.selList(dto); }
+    public List<CustomerVo> selCustomerList(CustomerDto dto) {
+        return mapper.selCustomerList(dto);
+    }
+
+    public CustomerVo selCustomerDetail(CustomerDto dto) {
+        CustomerVo detail = mapper.selCustomerDetail(dto);
+        return detail;
+    }
 }

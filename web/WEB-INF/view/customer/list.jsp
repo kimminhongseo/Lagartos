@@ -14,15 +14,16 @@
         <c:otherwise>
             <table>
                 <tr>
-                    <th>번호 | </th>
+                    <th>번호</th>
                     <c:choose>
                         <c:when test="${requestScope.board_type == 1}">
-                            <th>상품제목 | </th>
+                            <th>상품제목</th>
                         </c:when>
                         <c:otherwise></c:otherwise>
                     </c:choose>
-                    <th>제목 | </th>
-                    <th>작성자 | </th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>조회수</th>
                     <th>작성일시</th>
                 </tr>
                 <c:forEach items="${requestScope.list}" var="item">
@@ -32,10 +33,10 @@
                             <c:when test="${requestScope.board_type == 1}">
                                 <td><c:out value="${item.productTitle}"/></td>
                             </c:when>
-                            <c:otherwise></c:otherwise>
                         </c:choose>
                         <td><c:out value="${item.title}"/></td>
                         <td><c:out value="${item.nickname}"/></td>
+                        <td>${item.hits}</td>
                         <td>${item.rdt}</td>
                     </tr>
                 </c:forEach>

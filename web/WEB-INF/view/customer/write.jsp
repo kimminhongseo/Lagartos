@@ -16,7 +16,7 @@
     <h1>${title_val}</h1>
     <form action="${action_val}" method="post">
         <input type="hidden" name="iboard" value="${iboard_val}">
-        <input type="hidden" name="board_type" value="${board_type_val}">
+        <input type="hidden" name="board_num" value="${board_num_val}">
         <div>
             <label>제목 : <input type="text" name="title" value="<c:out value='${requestScope.data.title}'/>">
             </label>
