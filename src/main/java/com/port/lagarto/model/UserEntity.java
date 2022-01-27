@@ -26,6 +26,7 @@ public class UserEntity {
     private int disc_agree_a;
     private int disc_agree_b;
     private int disc_agree_c;
+    private int platform_cd;
     private int level;
     private int level_bar;
     private String rdt;
