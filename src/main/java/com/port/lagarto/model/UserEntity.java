@@ -2,13 +2,9 @@ package com.port.lagarto.model;
 
 import com.port.lagarto.enums.JoinResult;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
-@Setter
-@Getter
-@ToString
+@Data
+
 public class UserEntity {
     private int iuser;
     private String email;

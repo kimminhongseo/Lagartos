@@ -30,7 +30,10 @@
 </form>
 <div class="social">
     <div class="row row-cols-2">
-        <div class="col">네이버</div>
+        <div class="col">
+            <!-- 네이버 로그인 버튼 노출 영역 -->
+            <div id="naver_id_login"></div>
+        </div>
         <div class="col" onclick="loginWithKakao()"><img src="/res/img/kakao_login_medium.png"></div>
         <div class="col" onclick="fnFbCustomLogin();">
                     <a href="javascript:void(0)">
@@ -41,8 +44,23 @@
     </div>
 </div>
 
+<div class="findUser">
+    <div class="my-1">
+        <span>아이디 찾기/</span> <span>비밀번호 찾기</span>
+    </div>
+</div>
+
+<div id="test"></div>
+
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v10.0&appId=612308656721361" nonce="SiOBIhLG"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
+<!-- 네이버 스크립트 -->
+<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+
+<!--네이버-->
 
 

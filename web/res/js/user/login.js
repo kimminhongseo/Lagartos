@@ -1,3 +1,6 @@
+
+
+
 {
     let btnUserElem = document.querySelector('#btnUser');
     let btnLoginElem = btnUserElem.querySelector('#btnLogin');
@@ -159,4 +162,15 @@
             alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken());
         });
     }
+
+
+    //네이버
+    var naver_id_login = new naver_id_login("Olu165BkwTiB1vNvozvn", "http://localhost:8090/user/callback");
+    var state = naver_id_login.getUniqState();
+    naver_id_login.setButton("white", 2,40);
+    naver_id_login.setDomain("http://localhost:8090/user/login");
+    naver_id_login.setState(state);
+    naver_id_login.setPopup();
+    naver_id_login.init_naver_id_login();
+
 }
