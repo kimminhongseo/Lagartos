@@ -76,6 +76,27 @@ public class UserService {
         return result;
     }
 
+    public int loginSel(UserEntity entity){
+        UserEntity dbUser = null;
+        try {
+            System.out.println(entity.getUid());
+            entity.setUpw(BCrypt.hashpw(entity.getUpw(), BCrypt.gensalt()));
+            System.out.println(entity.getUpw());
+            dbUser = mapper.loginSel(entity);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0; //알 수 없는 에러
+        }
+        if(dbUser != null) {
+            if(BCrypt.checkpw(entity.getUpw(), dbUser.getUpw())) {
+                dbUser.setUpw(null);
+                utils.setLoginUser(dbUser);
+                return 1; //로그인 성공
+            }
+        }
+        return 2;//로그인 실패
+    }
+
     public UserEntity selUser(UserEntity entity){
         return mapper.selUser(entity);
     }

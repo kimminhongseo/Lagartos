@@ -5,6 +5,7 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="LAGARTO" />
+          <element id="module-output" name="Lagartos" />
           <element id="module-output" name="def_KYHS" />
         </element>
         <element id="directory" name="lib">
@@ -48,6 +49,14 @@
           <element id="library" level="project" name="Maven: org.springframework.social:spring-social-web:1.1.4.RELEASE" />
           <element id="library" level="project" name="Maven: javax.inject:javax.inject:1" />
           <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:4.0.1" />
+          <element id="library" level="project" name="Maven: javax.mail:javax.mail-api:1.5.5" />
+          <element id="library" level="project" name="Maven: javax.mail:mail:1.4.7" />
+          <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
+          <element id="library" level="project" name="Maven: com.sun.mail:javax.mail:1.5.3" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.5.13" />
+          <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.4.13" />
+          <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.11" />
+          <element id="library" level="project" name="Maven: org.apache.commons:commons-email:1.5" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="LAGARTO/web/Web" />

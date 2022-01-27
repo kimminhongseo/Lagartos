@@ -35,4 +35,11 @@
     <insert id="facebookPk">
         UPDATE t_user SET nickname = #{nickname} WHERE email = #{email};
     </insert>
+
+    <select id="loginSel" resultType="UserEntity">
+        SELECT * FROM `lagarto`.`lagarto_user`
+        WHERE
+        <if test=" uid != null and uid != '' "> `uid` = #{uid} </if>
+        <if test=" iuser > 0 "> `iuser` = #{iuser} </if>
+    </select>
 </mapper>

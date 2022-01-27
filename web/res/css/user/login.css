@@ -50,7 +50,11 @@
     border-right: 0px;
     width: 20% !important;
 }
-
+#msg-login{
+    text-align: center;
+    color: red;
+    margin-bottom: 10px;
+}
 #btnUser{
     display: flex;
     justify-content: center;
