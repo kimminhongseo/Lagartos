@@ -13,8 +13,17 @@ public class Const {
     public static final String CONTACT_SECOND = "^([0-9]{4})$";
     public static final String CONTACT_THIRD = "^([0-9]{4})$";
 
-
     public static boolean checkUid(String email) {
         return email.matches(UID);
+    }
+
+
+
+    public static class Platform {
+        public static final int GENERAL = 1;
+        public static final int NAVER = 2;
+        public static final int KAKAO = 3;
+        public static final int FACEBOOK = 4;
+        public static final int GOOGLE = 5;
     }
 }
