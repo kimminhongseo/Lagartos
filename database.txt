@@ -1,0 +1,48 @@
+CREATE DATABASE `lagarto`;
+
+
+-- ---------------- USER PLATFORM TYPE TABLE ----------------
+CREATE TABLE `lagarto`.`user_platform_type`
+(
+    `platform_cd` TINYINT UNSIGNED NOT NULL,
+    `platform_nm` VARCHAR(10)      NOT NULL,
+    CONSTRAINT PRIMARY KEY (`platform_cd`)
+);
+
+INSERT INTO `lagarto`.`user_platform_type`
+    (`platform_cd`, `platform_nm`)
+VALUES (1, 'general'),
+       (2, 'naver'),
+       (3, 'kakao'),
+       (4, 'facebook'),
+       (5, 'google');
+
+
+-- ---------------- USER TABLE ----------------
+CREATE TABLE `lagarto`.`lagarto_user`
+(
+    `iuser`             INT UNSIGNED AUTO_INCREMENT,
+    `uid`               VARCHAR(50)      NOT NULL COMMENT 'email',
+    `upw`               VARCHAR(128)     NOT NULL,
+    `nm`                VARCHAR(10),
+    `nickname`          VARCHAR(10),
+    `contact_first`     VARCHAR(3)       NOT NULL,
+    `contact_second`    VARCHAR(4)       NOT NULL,
+    `contact_third`     VARCHAR(4)       NOT NULL,
+    `profile_img`       VARCHAR(100),
+    `address_post`      VARCHAR(5),
+    `address_primary`   VARCHAR(100),
+    `address_secondary` VARCHAR(100),
+    `disc_agree_a`      TINYINT UNSIGNED NOT NULL DEFAULT 0,
+    `disc_agree_b`      TINYINT UNSIGNED NOT NULL DEFAULT 0,
+    `disc_agree_c`      TINYINT UNSIGNED NOT NULL DEFAULT 0,
+    `platform_cd`       TINYINT UNSIGNED NOT NULL,
+    `level`             TINYINT UNSIGNED NOT NULL DEFAULT 9 COMMENT '1~9',
+    `level_bar`         INT UNSIGNED     NOT NULL DEFAULT 0 COMMENT '0~1000',
+    `rdt`               DATETIME                  DEFAULT NOW(),
+    CONSTRAINT PRIMARY KEY (`iuser`),
+    CONSTRAINT FOREIGN KEY (`platform_cd`) REFERENCES `lagarto`.`user_platform_type` (`platform_cd`) ON DELETE CASCADE,
+    CONSTRAINT UNIQUE (`uid`),
+    CONSTRAINT UNIQUE (`contact_first`, `contact_second`, `contact_third`),
+    CONSTRAINT UNIQUE (`nickname`)
+);
