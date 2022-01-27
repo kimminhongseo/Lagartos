@@ -10,27 +10,26 @@
                 <div>
                     <div class="input_name">아이디 (이메일)</div>
                     <label>
-                        <button type="reset" class="btn_option reset_btn"></button>
                         <sapn hidden>이메일</sapn>
                         <input type="text" name="uid" placeholder="예) lagarto@lagarto.com" data-regex="<%=Const.UID%>" required autofocus>
+                        <button type="reset" class="btn_option reset_btn"></button>
                         <span class="warning" rel="email-warning"></span>
                     </label>
                 </div>
                 <div>
                     <div class="input_name">비밀번호</div>
                     <label>
-                        <button type="reset" class="btn_option reset_btn"></button>
                         <span hidden>비밀번호</span>
                         <input type="password" name="upw" placeholder="영문, 숫자, 특수문자 조합 8-16자" data-regex="<%=Const.UPW%>" required>
+                        <button type="reset" class="btn_option reset_btn"></button>
                     </label>
                 </div>
                 <div>
                     <div class="input_name">비밀번호 확인</div>
                     <label>
-                        <button type="reset" class="btn_option reset_btn"></button>
-                        <button class="btn_option"></button>
                         <span hidden>비밀번호 재확인</span>
                         <input type="password" name="upw_check" placeholder="비밀번호 확인" required>
+                        <button type="reset" class="btn_option reset_btn"></button>
                     </label>
                 </div>
                 <div>
@@ -62,7 +61,7 @@
                 <h2 class="hidden">이용약관</h2>
                 <div class="disc_all">
                     <input id="disc_agree_all" name="disc_agree_all" type="checkbox">
-                    <label for="disc_agree_all" ></label>
+                    <label for="disc_agree_all"></label>
                     <span>약관 전체 동의</span>
                 </div>
                 <div class="disc_cont">

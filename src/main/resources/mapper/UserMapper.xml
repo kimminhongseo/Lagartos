@@ -3,8 +3,8 @@
 <mapper namespace="com.port.lagarto.user.UserMapper">
     <insert id="insUser">
         INSERT INTO `lagarto`.`lagarto_user`
-        (`uid`, `upw`, `contact_first`, `contact_second`, `contact_third`, `desc`, `desc_choose`)
-        VALUES (#{uid}, #{upw}, #{contact_first}, #{contact_second}, #{contact_third}, #{desc}, #{desc_choose})
+        (`uid`, `upw`, `contact_first`, `contact_second`, `contact_third`, `disc_agree_a`, `disc_agree_b`, `disc_agree_c`)
+        VALUES (#{uid}, #{upw}, #{contact_first}, #{contact_second}, #{contact_third}, #{disc_agree_a}, #{disc_agree_b}, #{disc_agree_c})
     </insert>
 
     <select id="selContactCount" resultType="int">

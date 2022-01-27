@@ -87,14 +87,15 @@ public class UserController {
     }
 
     @PostMapping("/join")
-    public String joinProc(UserEntity entity, RedirectAttributes reAttr) {
+    public String joinProc(UserEntity entity, Model model) {
         int result = service.insUser(entity);
 
-        if (!(result == 1 && entity.getResult() == JoinResult.SUCCESS)) {
-            reAttr.addFlashAttribute("err", "회원가입에 실패하였습니다.");
+        if (result != 1) {
+            model.addAttribute("err", "회원가입에 실패하였습니다.");
             System.out.println("회원가입 실패");
         }
-        System.out.println("회원가입 성공");
+
+        // TODO : email 전송 기능 구현 후 email 인증 페이지로 이동 후 회원가입 처리
 
         return "redirect:/user/login";
     }
