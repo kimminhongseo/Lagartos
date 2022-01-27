@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="btn_cont">
-                    <input class="object_button prop_light" type="button" value="취소">
+                    <input id="cancelBtn" class="object_button prop_light" type="button" value="취소">
                     <input class="object_button prop_dark" type="submit" value="인증하기">
                 </div>
             </div>

@@ -19,26 +19,37 @@ import java.util.Map;
 public class UserController {
     @Autowired //필요한 메소드 자동찾기
     private UserService service;
+    @Autowired
+    private Utils utils;
 
     @GetMapping("/login")
-    public void login(Model model) {
+    public String login(Model model) {
+        if (utils.getLoginUserPk() != 0){
+            return "redirect:/main/page";
+        }
         model.addAttribute("title", "로그인");
+        return "user/login";
     }
 
 
-     @PostMapping("/login")
+
+
+     @PostMapping("/apiLogin")
      @ResponseBody
      public int loginProc(@RequestBody UserEntity entity){
         UserEntity dbentity = service.selUser(entity);
         if (dbentity == null){
-            service.insUser(entity);
+            String pw = Utils.randomPw();
+            entity.setUpw(pw);
+            service.apiInsUser(entity);
             return 1;
         }
-         Utils.randomPw();
+        utils.setLoginUser(dbentity);
+        System.out.println(utils.getLoginUserPk());
          return 0;
      }
 
-    @GetMapping("/certification")
+    @GetMapping("/eodyd/certification")
     public void certification() {
 
     }
@@ -75,18 +86,47 @@ public class UserController {
     }
 
     @PostMapping("/join")
-    public void joinProc(UserEntity entity) {
+    public String joinProc(UserEntity entity, Model model) {
+        int result = service.insUser(entity);
+
+        if (result != 1) {
+            model.addAttribute("err", "회원가입에 실패하였습니다.");
+            System.out.println("회원가입 실패");
+        }
+
+        // TODO : email 전송 기능 구현 후 email 인증 페이지로 이동 후 회원가입 처리
+
+        return "redirect:/user/login";
+    }
+
+    @PostMapping("/apiJoin")
+    public void apiJoinProc(UserEntity entity) {
         System.out.println(entity.getNickname());
         service.facebookIns(entity);
     }
 
+    @PostMapping("/uidChk")
+    @ResponseBody
+    public Map<String, Integer> emailCount(@RequestBody UserEntity entity) {
+        Map<String, Integer> result = new HashMap<>();
+        System.out.println("uid : " + entity.getUid());
+        result.put("result", service.uidCheck(entity));
+        return result;
+    }
 
 
-    //네이버 Controller
+    @PostMapping("/contChk")
+    @ResponseBody
+    public Map<String, Integer> contactCount(@RequestBody UserEntity entity) {
+        Map<String, Integer> result = new HashMap<>();
+        System.out.println("contact : " + entity.getContact_first() + entity.getContact_second() + entity.getContact_third());
+        result.put("result", service.contactCheck(entity));
+        return result;
+    }
 
+    @GetMapping("/mypage")
+    public void mypage(Model model) {
+        model.addAttribute("title", "마이페이지");
+    }
 }
-
-
-
-
 

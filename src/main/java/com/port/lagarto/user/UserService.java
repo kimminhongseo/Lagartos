@@ -26,24 +26,31 @@ public class UserService {
     private HttpSession hs;
 
 
-//    public int insUser(UserEntity entity){
-//        UserEntity result = null;
-//        try {
-//            result = mapper.selUser(entity);
-//            if (result == null){
-//                mapper.insUser(entity);
-//                result = mapper.selUser(entity);
-//            }
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//        hs.setAttribute(Const.LOGIN_USER, result);
-//        return 0;
-//    }
+    public int apiInsUser(UserEntity entity){
+        UserEntity result = null;
+        try {
+            result = mapper.selUser(entity);
+            if (result == null){
+                mapper.apiInsUser(entity);
+                result = mapper.selUser(entity);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        hs.setAttribute(Const.LOGIN_USER, result);
+        return 0;
+    }
 
     public int insUser(UserEntity entity) {
         UserEntity copyEntity = new UserEntity();
         BeanUtils.copyProperties(entity, copyEntity);
+
+        // 필수 약관동의 체크
+        if (!(copyEntity.getDisc_agree_a() == 1 && copyEntity.getDisc_agree_b() == 1)) {
+            System.out.println("desc err");
+            copyEntity.setResult(JoinResult.FAILURE);
+            return 0;
+        }
 
         // 아이디 정규식 체크
         if (Const.checkUid(entity.getUid())) {
@@ -57,8 +64,16 @@ public class UserService {
             return 0;
         }
 
+        // 전화번호 중복 체크
+        if (mapper.selContactCount(copyEntity) > 0) {
+            System.out.println("contact check err");
+            copyEntity.setResult(JoinResult.DUPLICATE_CONTACT);
+            return 0;
+        }
+
         String hashUpw = BCrypt.hashpw(copyEntity.getUpw(), BCrypt.gensalt());
         copyEntity.setUpw(hashUpw);
+        System.out.println(hashUpw);
 
         copyEntity.setResult(JoinResult.SUCCESS);
         return mapper.insUser(copyEntity);
@@ -76,13 +91,44 @@ public class UserService {
         return result;
     }
 
+    public int uidCheck(UserEntity entity) {
+        int result = mapper.selUidCount(entity);
+
+        if (result > 0) {
+            entity.setResult(JoinResult.DUPLICATE_EMAIL);
+        }
+
+        return result;
+    }
+
+    public int loginSel(UserEntity entity){
+        UserEntity dbUser = null;
+        try {
+            System.out.println(entity.getUid());
+            entity.setUpw(BCrypt.hashpw(entity.getUpw(), BCrypt.gensalt()));
+            System.out.println(entity.getUpw());
+            dbUser = mapper.loginSel(entity);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0; //알 수 없는 에러
+        }
+        if(dbUser != null) {
+            if(BCrypt.checkpw(entity.getUpw(), dbUser.getUpw())) {
+                dbUser.setUpw(null);
+                utils.setLoginUser(dbUser);
+                return 1; //로그인 성공
+            }
+        }
+        return 2;//로그인 실패
+    }
+
     public UserEntity selUser(UserEntity entity){
         return mapper.selUser(entity);
     }
 
-    public int facebookIns(UserEntity entity){
+    public UserEntity facebookIns(UserEntity entity){
         entity.setIuser(utils.getLoginUserPk());
-        return mapper.facebookIns(entity);
+        return mapper.facebookPk(entity);
     }
 
 

@@ -2,21 +2,44 @@
 
 
 {
-    let btnLoginElem = document.querySelector('#btnLogin');
+    let btnUserElem = document.querySelector('#btnUser');
+    let btnLoginElem = btnUserElem.querySelector('#btnLogin');
+    let loginElem = document.querySelector('#login');
+    let formId = loginElem.querySelector('#formId');
+    let formPw = loginElem.querySelector('#formPw');
 
-    if (btnLoginElem) {
-        btnLoginElem.addEventListener('click', () => {
-            alert('실행');
+
+    if (btnLoginElem){
+        btnLoginElem.disabled = 'disabled';
+        formId.addEventListener('keyup', () =>{
+                formPw.addEventListener('keyup', () =>{
+                    if (formId.value !== '' || formPw.value !== ''){
+                        btnLoginElem.disabled = false;
+                    }
+                });
         });
+        formPw.addEventListener('keyup', () =>{
+        formId.addEventListener('keyup', () =>{
+                if (formId.value !== '' || formPw.value !== ''){
+                    btnLoginElem.disabled = false;
+                }
+            });
+        });
+
     }
 
+    if (btnUserElem){
+        btnLoginElem.addEventListener('click', (e) =>{
+            btnLoginElem.type = 'submit';
+        });
+    }
 
     // 휴대전화 인증 페이지 (/user/certification) 이동
     let btnJoinElem = document.querySelector('#btnJoin');
 
     if (btnJoinElem) {
         btnJoinElem.addEventListener('click', () => {
-            openJoinWin();
+            location.href='/user/join';
         })
     }
 
@@ -38,7 +61,7 @@
         FB.login(function (response) {
             if (response.status === 'connected') {
                 FB.api('/me', 'get', {fields: 'name,email'}, function (r) {
-                    let url = '/user/login';
+                    let url = '/user/apiLogin';
                     console.log(r);
 
                     fetch(url, {
@@ -47,8 +70,16 @@
                         body: JSON.stringify(r)
                     }).then(function (res) {
                         return res.json();
-                    })
-                    location.href = "/user/join";
+                    }).then(hh => {
+                        switch (hh){
+                            case 1:
+                                location.href = "http://localhost:8090/user/certification"
+                                break;
+                            case 0:
+                                location.href = "http://localhost:8090/page/main"
+                                break;
+                        }
+                    });
                 })
             } else if (response.status === 'not_authorized') {
                 // 사람은 Facebook에 로그인했지만 앱에는 로그인하지 않았습니다.
@@ -62,7 +93,7 @@
 
     window.fbAsyncInit = function () {
         FB.init({
-            appId      : '100077093453861', // 내 앱 ID를 입력한다.
+            appId      : '612308656721361', // 내 앱 ID를 입력한다.
             cookie     : true,
             xfbml      : true,
             version    : 'v12.0'
@@ -100,8 +131,8 @@
                 console.log(res);
                 // 이메일, 닉네임
                 const kakao_user_info = {
-                    email: res.kakao_account.email,
-                    name: res.kakao_account.profile.nickname
+                    uid: res.kakao_account.email,
+                    nm: res.kakao_account.profile.nickname
                 }
                 let url = '/user/login';
                 console.log(kakao_user_info);

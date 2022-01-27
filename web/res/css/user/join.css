@@ -10,10 +10,14 @@
 
 /* 회원가입 작성 폼 */
 .form_container {
-    display: grid;
-    grid-template-rows: 1fr;
-    gap: 1.5rem;
+    /*display: grid;*/
+    /*grid-template-rows: 1fr;*/
+    /*gap: 1.5rem;*/
     margin-bottom: 2rem;
+}
+
+.form_container > div {
+    min-height: 8rem;
 }
 
 .form_container div.input_name {
@@ -119,4 +123,15 @@ input[type="checkbox"]:checked + label{
     position: absolute;
     top: 0.2rem;
     right: 0;
+}
+
+span.warning {
+    color: #f75858;
+    display: block;
+    font-size: 0.85rem;
+    margin: 0.3rem 1rem;
+}
+
+span.warning.visible {
+    display: inline-block;
 }
