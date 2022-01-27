@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
+
     @Autowired
-    private CustomerService service;
+    public CustomerService service;
 
     @GetMapping("/list/{board_num}")
     public String list(@PathVariable int board_num, CustomerDto dto, Model model) {
