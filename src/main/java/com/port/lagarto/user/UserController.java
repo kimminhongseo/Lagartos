@@ -5,6 +5,7 @@ import com.port.lagarto.Utils;
 import com.port.lagarto.enums.JoinResult;
 import com.port.lagarto.model.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.social.facebook.api.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -32,8 +33,16 @@ public class UserController {
         return "user/login";
     }
 
-
-
+    @PostMapping("/login")
+    public String loginproc(UserEntity entity, Model model) {
+        int result =service.loginSel(entity);
+        if (result == 1){//로그인성공
+            return "redirect:/main/page";
+        }
+        model.addAttribute("title", "로그인");
+        model.addAttribute(Const.MSG, Const.ERR_Login);
+        return "user/login";
+    }
 
      @PostMapping("/apiLogin")
      @ResponseBody
