@@ -46,3 +46,5 @@ CREATE TABLE `lagarto`.`lagarto_user`
     CONSTRAINT UNIQUE (`contact_first`, `contact_second`, `contact_third`),
     CONSTRAINT UNIQUE (`nickname`)
 );
+
+-- ---------------- CUSTOMER TABLE ----------------

@@ -23,7 +23,7 @@ public class CustomerController {
     public String list(@PathVariable int board_num, CustomerDto dto, Model model) {
         model.addAttribute("board_num", board_num);
         model.addAttribute("list", service.selCustomerList(dto));
-        dto.setBoard_type(board_num);
+        dto.setBoard_num(board_num);
         return "customer/list";
     }
 
@@ -33,7 +33,7 @@ public class CustomerController {
     @PostMapping("/write")
     public String writeProc(CustomerEntity entity) {
         int result = service.insCustomer(entity);
-        return "redirect:/customer/list/" + entity.getBoard_type();
+        return "redirect:/customer/list/" + entity.getBoard_num();
     }
 
     @GetMapping("/detail")

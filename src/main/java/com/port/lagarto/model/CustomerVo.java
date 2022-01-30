@@ -8,5 +8,5 @@ import lombok.Setter;
 public class CustomerVo extends CustomerEntity {
     private String productTitle;
     private String nickname;
-    private String categoryNm;
+    private String board_name;
 }

@@ -16,7 +16,7 @@
                 <tr>
                     <th>번호</th>
                     <c:choose>
-                        <c:when test="${requestScope.board_type == 1}">
+                        <c:when test="${requestScope.board_num == 1}">
                             <th>상품제목</th>
                         </c:when>
                         <c:otherwise></c:otherwise>
@@ -30,7 +30,7 @@
                     <tr class="record" data-iboard="${item.iboard}">
                         <td>${item.iboard}</td>
                         <c:choose>
-                            <c:when test="${requestScope.board_type == 1}">
+                            <c:when test="${requestScope.board_num == 1}">
                                 <td><c:out value="${item.productTitle}"/></td>
                             </c:when>
                         </c:choose>
