@@ -19,6 +19,12 @@ public class Const {
 
 
 
+    //Auction부분
+    public static final String AUCTION_MENU_LIST = "auctionMenuList";
+
+    //Auction부분
+
+
     public static class Platform {
         public static final int GENERAL = 1;
         public static final int NAVER = 2;

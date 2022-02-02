@@ -44,7 +44,11 @@
         where A.isdel = 0
         AND A.iboard = ${iboard}
 
+    </select>
 
+    <!--도마뱀목록-->
+    <select id="selAuctionCategoryList" resultType="AuctionCategoryEntity">
+        SELECT * FROM auction_category ORDER BY orderby
     </select>
     
     

@@ -1,5 +1,7 @@
 package com.port.lagarto.auction;
 
+import com.port.lagarto.Const;
+import com.port.lagarto.model.AuctionDto;
 import com.port.lagarto.model.AuctionEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,18 +30,18 @@ public class AuctionController {
     }
     //todo: 확인해보기 list에 전체적인 내용
     @GetMapping("/list")
-    public String list(AuctionEntity entity, Model model){
+    public String list(AuctionDto dto, Model model){
 
-        model.addAttribute("list",service.selAuctionListAll(entity));
+        model.addAttribute("list",service.selAuctionListAll(dto));
         return "auction/list";
     }
 
 
     @GetMapping("/list/{icategory}")
-    public String list(@PathVariable int icategory, AuctionEntity entity, Model model){
+    public String list(@PathVariable int icategory, AuctionDto dto, Model model){
         model.addAttribute("icategory");
-        model.addAttribute("list",service.selAuctionList(entity));
-        entity.setIcategory(icategory);
+        model.addAttribute("list",service.selAuctionList(dto));
+        dto.setIcategory(icategory);
         return "auction/list";
 
     }
