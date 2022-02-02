@@ -19,11 +19,11 @@ public class CustomerController {
     @Autowired
     public CustomerService service;
 
-    @GetMapping("/list/{board_num}")
-    public String list(@PathVariable int board_num, CustomerDto dto, Model model) {
-        model.addAttribute("board_num", board_num);
+    @GetMapping("/list/{board_cd}")
+    public String list(@PathVariable int board_cd, CustomerDto dto, Model model) {
+        model.addAttribute("board_cd", board_cd);
         model.addAttribute("list", service.selCustomerList(dto));
-        dto.setBoard_num(board_num);
+        dto.setBoard_cd(board_cd);
         return "customer/list";
     }
 
@@ -33,7 +33,7 @@ public class CustomerController {
     @PostMapping("/write")
     public String writeProc(CustomerEntity entity) {
         int result = service.insCustomer(entity);
-        return "redirect:/customer/list/" + entity.getBoard_num();
+        return "redirect:/customer/list/" + entity.getBoard_cd();
     }
 
     @GetMapping("/detail")

@@ -9,7 +9,7 @@
         </div>
     </c:if>
     <div id="data"
-         data-board_num="${data.board_num}"
+         data-board_cd="${data.board_cd}"
          data-iboard="${data.iboard}"
          data-nm="${sessionScope.loginUser.nm}"
          data-iuser="${sessionScope.loginUser.iuser}"
@@ -25,9 +25,9 @@
     </c:if>
 
     <div>
-        <div>카테고리: ${data.board_name}</div>
+        <div>카테고리: ${data.board_nm}</div>
         <div>조회수: ${data.hits} | 등록일시: ${data.rdt}</div>
-        <div>글쓴이: ${data.nickname}</div>d
+        <div>글쓴이: ${data.nickname}</div>
         <div>제목: <c:out value="${data.title}" /></div>
         <hr>
         <div><c:out value="${data.ctnt}" /></div>

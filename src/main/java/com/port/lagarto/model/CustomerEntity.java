@@ -9,8 +9,8 @@ import lombok.ToString;
 @ToString
 public class CustomerEntity {
     private int iboard;
-    private int board_num;
-    private int product_num;
+    private int board_cd;
+    private int product_cd;
     private String title;
     private String ctnt;
     private String ctnt_img;
