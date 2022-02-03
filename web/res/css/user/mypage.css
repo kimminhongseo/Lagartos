@@ -86,3 +86,48 @@
     margin-left: 5%;
 }
 
+#password-frm{
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+    float: none;
+    margin: 0 auto;
+    padding: 30px;
+    width: 1000px;
+    height: 300px;
+    border: solid 1px #e7e7e7;
+}
+
+#password-update{
+    flex-direction: column;
+}
+
+
+
+#password-current, #password-upd, #password-chk{
+    font-size: 15px;
+    border: 2px solid #e7e7e7;
+    padding: 10px 10px;
+    margin-top: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    float: left;
+}
+
+#password-current-input , #password-upd-input, #password-chk-input{
+    margin-left: 2px;
+    padding: 10px 10px;
+    margin-top: 10px;
+    border: 2px solid #e7e7e7;
+}
+
+#password-smt{
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+    float: none;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+

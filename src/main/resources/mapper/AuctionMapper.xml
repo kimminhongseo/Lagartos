@@ -13,7 +13,7 @@
     <!--전체 sel 하는거 하나 만들어야할듯-->
 
     <select id="selAuctionList" resultType="AuctionVo">
-        select A.iboard, A.title, A.iuser, A.hits, A.images, A.ctnt , A.imbuy, A.buy,
+        select A.iboard,A.icategory, A.title, A.iuser, A.hits, A.images, A.ctnt , A.imbuy, A.buy,
         B.nm as writernm
         From auction A
         Left join lagarto_user B
@@ -25,7 +25,7 @@
     </select>
 
     <select id="selAuctionListAll" resultType="AuctionVo">
-        select A.iboard, A.title, A.iuser, A.hits, A.images, A.ctnt , A.imbuy, A.buy,
+        select A.iboard, A.icategory, A.title, A.iuser, A.hits, A.images, A.ctnt , A.imbuy, A.buy,
         B.nm as writernm
         from auction A
         left join lagarto_user B
@@ -37,14 +37,20 @@
   <!--디테일 만들쟈~-->
     <select id="selAuctionDetail" resultType="AuctionVo">
         select A.iboard, A.title,A.icategory ,A.iuser, A.hits, A.images, A.ctnt , A.imbuy, A.buy,
-        B.nm as writernm, B.profile_img
+        B.nm as writernm, B.profile_img, C.nm as categorynm
         from auction A
-        left join lagarto_user B
-        on A.iuser = B.iuser
+            left join lagarto_user B
+            on A.iuser = B.iuser
+            left join auction_category C
+            on A.icategory = C.icategory
         where A.isdel = 0
         AND A.iboard = ${iboard}
 
+    </select>
 
+    <!--도마뱀목록-->
+    <select id="selAuctionCategoryList" resultType="AuctionCategoryEntity">
+        SELECT * FROM auction_category ORDER BY orderby
     </select>
     
     

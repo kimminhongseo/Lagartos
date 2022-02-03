@@ -146,7 +146,7 @@
                 }).then(hh => {
                     switch (hh) {
                         case 1:
-                            location.href = "http://localhost:8090/user/join"
+                            location.href = "http://localhost:8090/user/certification"
                             break;
                         case 0:
                             location.href = "http://localhost:8090/page/main"

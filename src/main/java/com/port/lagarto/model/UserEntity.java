@@ -4,7 +4,6 @@ import com.port.lagarto.enums.JoinResult;
 import lombok.Data;
 
 @Data
-
 public class UserEntity {
     private int iuser;
     private String email;

@@ -4,6 +4,7 @@ package com.port.lagarto.user;
 import com.port.lagarto.Const;
 import com.port.lagarto.Utils;
 import com.port.lagarto.enums.JoinResult;
+import com.port.lagarto.model.UserDto;
 import com.port.lagarto.model.UserEntity;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.BeanUtils;
@@ -103,12 +104,9 @@ public class UserService {
     public int loginSel(UserEntity entity){
         UserEntity dbUser = null;
         try {
-            System.out.println(entity.getUid());
-            entity.setUpw(BCrypt.hashpw(entity.getUpw(), BCrypt.gensalt()));
-            System.out.println(entity.getUpw());
             dbUser = mapper.loginSel(entity);
         } catch (Exception e) {
-            e.printStackTrace();
+        e.printStackTrace();
             return 0; //알 수 없는 에러
         }
         if(dbUser != null) {
@@ -131,6 +129,14 @@ public class UserService {
     }
 
 
+    public UserEntity passwordSel(UserDto entity){
+        UserEntity dbUpw = mapper.passwordSel(entity);
+        if(BCrypt.checkpw(entity.getUpw(), dbUpw.getUpw())){
+            entity.setNewUpw(BCrypt.hashpw(entity.getNewUpw(), BCrypt.gensalt()));
+            return mapper.passwordUpd(entity);
+        }
+        return null;
+    }
 
 
 }

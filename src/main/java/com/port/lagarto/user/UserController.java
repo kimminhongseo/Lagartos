@@ -3,8 +3,10 @@ package com.port.lagarto.user;
 import com.port.lagarto.Const;
 import com.port.lagarto.Utils;
 import com.port.lagarto.enums.JoinResult;
+import com.port.lagarto.model.UserDto;
 import com.port.lagarto.model.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.social.facebook.api.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -32,8 +34,16 @@ public class UserController {
         return "user/login";
     }
 
-
-
+    @PostMapping("/login")
+    public String loginproc(UserEntity entity, Model model) {
+        int result =service.loginSel(entity);
+        if (result == 1){//로그인성공
+            return "redirect:/main/page";
+        }
+        model.addAttribute("title", "로그인");
+        model.addAttribute(Const.MSG, Const.ERR_Login);
+        return "user/login";
+    }
 
      @PostMapping("/apiLogin")
      @ResponseBody
@@ -121,6 +131,23 @@ public class UserController {
     @GetMapping("/mypage")
     public void mypage(Model model) {
         model.addAttribute("title", "마이페이지");
+    }
+
+    @PostMapping("/passwordCurrent")
+    @ResponseBody
+    public Map<String, Integer> passwordSel(@RequestBody UserDto entity){
+        System.out.println(entity.getIuser());
+        System.out.println(entity.getUpw());
+        System.out.println(entity.getNewUpw());
+        UserEntity userEntity = service.passwordSel(entity);
+
+        Map<String, Integer> result = new HashMap<>();
+        if(userEntity != null){
+            result.put("result", 1);
+            return result;
+        }
+        result.put("result", 0);
+        return result;
     }
 }
 
