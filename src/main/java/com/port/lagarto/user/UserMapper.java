@@ -1,5 +1,6 @@
 package com.port.lagarto.user;
 
+import com.port.lagarto.model.UserDto;
 import com.port.lagarto.model.UserEntity;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -13,4 +14,6 @@ public interface UserMapper {
     UserEntity selUser(UserEntity entity);
     UserEntity facebookPk(UserEntity entity);
     UserEntity loginSel(UserEntity entity);
+    UserEntity passwordSel(UserDto entity);
+    UserEntity passwordUpd(UserEntity entity);
 }
