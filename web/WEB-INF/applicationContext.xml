@@ -12,7 +12,6 @@
         <property name="jdbcUrl" value="jdbc:mysql://localhost:3308/lagarto"/>
         <property name="username" value="root"/>
         <property name="password" value="koreait"/>
-
     </bean>
 
     <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
