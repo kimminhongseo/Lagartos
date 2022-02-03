@@ -21,7 +21,7 @@ public class Const {
 
     //Auction부분
     public static final String AUCTION_MENU_LIST = "auctionMenuList";
-
+    public static final String DATA = "data";
     //Auction부분
 
 

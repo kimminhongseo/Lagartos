@@ -30,7 +30,7 @@ public class AuctionService {
     public List<AuctionVo> selAuctionList(AuctionDto dto){return  mapper.selAuctionList(dto);}
     public List<AuctionVo> selAuctionListAll(AuctionDto dto){return  mapper.selAuctionListAll(dto);}
 
-    public AuctionVo selAuctionDetail (AuctionVo vo){return mapper.selAuctionDetail(vo);}
+    public AuctionVo selAuctionDetail (AuctionDto dto){return mapper.selAuctionDetail(dto);}
 
     public List<AuctionCategoryEntity> auctionMenuList(){return  mapper.selAuctionCategoryList();}
 

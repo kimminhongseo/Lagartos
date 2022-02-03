@@ -3,6 +3,7 @@ package com.port.lagarto.auction;
 import com.port.lagarto.Const;
 import com.port.lagarto.model.AuctionDto;
 import com.port.lagarto.model.AuctionEntity;
+import com.port.lagarto.model.AuctionVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,6 +45,11 @@ public class AuctionController {
         dto.setIcategory(icategory);
         return "auction/list";
 
+    }
+
+    @GetMapping("/detail")
+    public void detail(AuctionDto dto,Model model){
+        model.addAttribute(Const.DATA,service.selAuctionDetail(dto));
     }
 
 

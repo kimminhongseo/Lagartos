@@ -23,6 +23,8 @@
             <label>즉시구매가: <input type="number" name="imbuy"><c:out value="${requestScope.data.imbuy}"/></label>
             <label>경매가 : <input type="number" name="buy"><c:out value="${requestScope.data.buy}"/></label>
         </div>
+        <div>이미지업로드~~~~~~~</div>
+
 
         <div><input type="submit" value="${submitVal}"></div>
 

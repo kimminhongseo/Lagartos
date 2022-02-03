@@ -12,10 +12,11 @@ ge의 의미는 >= 부등호 표시
     <div><a href="/auction/write?icategory=${requestScope.icategory}">글쓰기</a></div>
 </c:if>
 <div>검색기능?</div>
+<!--grid  css or bootstrap-->
 <div class="auction_container">
     <ul class="auction_list">
         <c:forEach items="${requestScope.list}" var="item">
-            <li onclick="moveToDetail(${item.iboard})">
+            <li class="record" data-iboard="${item.iboard}">
                 <div>
                     <img src="/res/img/Lagarto.PNG">
                 </div>

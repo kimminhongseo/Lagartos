@@ -12,7 +12,8 @@ import java.util.List;
 @Mapper
 public interface AuctionMapper {
     int insAuction(AuctionEntity entity);
-    AuctionVo selAuctionDetail(AuctionVo vo); //writernm때문에
+
+    AuctionVo selAuctionDetail(AuctionDto dto); //writernm때문에
     List<AuctionVo> selAuctionList(AuctionDto dto);
     List<AuctionVo> selAuctionListAll(AuctionDto dto);
 
