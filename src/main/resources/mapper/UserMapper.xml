@@ -47,13 +47,11 @@
     </select>
 <!--현재 비밀번호 비밀번호-->
     <select id="passwordSel" resultType="UserEntity">
---         SELECT upw FROM `lagarto`.`lagarto_user`
-        SELECT upw FROM t_user
+        SELECT upw FROM `lagarto`.`lagarto_user`
         WHERE iuser = #{iuser}
     </select>
 <!--비밀번호 업데이트-->
     <update id="passwordUpd">
---         update `lagarto`.`lagarto_user` set upw = #{newUpw} where iuser=#{iuser}
-    update t_user set upw = #{newUpw} where iuser=#{iuser}
+        update `lagarto`.`lagarto_user` set upw = #{newUpw} where iuser=#{iuser}
     </update>
 </mapper>

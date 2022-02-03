@@ -24,6 +24,7 @@
                     case 0:
                         alert('변경실패')
                         e.preventDefault();
+                        break;
                     case 1:
                         if (confirm('비밀번호를 변경 하시겠습니까?')){
                             alert('변경완료');
