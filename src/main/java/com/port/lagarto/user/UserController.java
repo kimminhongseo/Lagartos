@@ -38,7 +38,7 @@ public class UserController {
     public String loginproc(UserEntity entity, Model model) {
         int result =service.loginSel(entity);
         if (result == 1){//로그인성공
-            return "redirect:/main/page";
+            return "redirect:/main";
         }
         model.addAttribute("title", "로그인");
         model.addAttribute(Const.MSG, Const.ERR_Login);
@@ -148,6 +148,12 @@ public class UserController {
         }
         result.put("result", 0);
         return result;
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "redirect:/main";
     }
 }
 
