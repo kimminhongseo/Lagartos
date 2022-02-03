@@ -12,19 +12,18 @@
     <c:set var="iboard_val" value="${requestScope.data.iboard}" />
     <c:set var="board_type_val" value="0" />
 </c:if>
-<div class="flex-container flex-center flex-direction-column">
-    <h1>${title_val}</h1>
-    <form action="${action_val}" method="post">
-        <input type="hidden" name="iboard" value="${iboard_val}">
-        <input type="hidden" name="board_num" value="${board_num_val}">
-        <div>
-            <label>제목 : <input type="text" name="title" value="<c:out value='${requestScope.data.title}'/>">
-            </label>
+<div>
+    <form action="/customer/write" method="post">
+        <div class="mb-3">
+            <input type="text" class="form-control" id="title" placeholder="제목">
         </div>
-        <div>
-            <label>내용 : <textarea name="ctnt"><c:out value="${requestScope.data.ctnt}" /></textarea>
-            </label>
+        <div class="mb-3">
+            <textarea class="form-control" id="ctnt" rows="3" placeholder="내용을 입력해 주세요."></textarea>
         </div>
-        <div><input type="submit" value="${submit_val}"></div>
+        <div class="mb-3">
+            <input class="form-control" type="file" id="formFileMultiple" multiple>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-outline-secondary">Reset</button>
     </form>
 </div>
