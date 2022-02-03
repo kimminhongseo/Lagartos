@@ -6,7 +6,6 @@
         <element id="directory" name="classes">
           <element id="module-output" name="LAGARTO" />
           <element id="module-output" name="Lagartos" />
-          <element id="module-output" name="def_KYHS" />
           <element id="module-output" name="Lagartos1진짜" />
         </element>
         <element id="directory" name="lib">
@@ -62,6 +61,11 @@
           <element id="library" level="project" name="Maven: com.googlecode.json-simple:json-simple:1.1.1" />
           <element id="library" level="project" name="Maven: junit:junit:4.10" />
           <element id="library" level="project" name="Maven: org.hamcrest:hamcrest-core:1.1" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.4.2" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-core-asl:1.4.2" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.6" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.0" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.6" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="Lagartos/web/Web" />
