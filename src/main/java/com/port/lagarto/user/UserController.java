@@ -47,10 +47,10 @@ public class UserController {
         }
         utils.setLoginUser(dbentity);
         System.out.println(utils.getLoginUserPk());
-         return 0;
+        return 0;
      }
 
-    @GetMapping("/eodyd/certification")
+    @GetMapping("/certification")
     public void certification() {
 
     }
@@ -81,7 +81,6 @@ public class UserController {
 
     @PostMapping("/join")
     public String joinProc(UserEntity entity, Model model) {
-        entity.setPlatform_cd(Const.Platform.GENERAL);
         int result = service.insUser(entity);
 
         if (result != 1) {

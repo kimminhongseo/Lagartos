@@ -47,32 +47,31 @@ public class UserService {
 
         // 필수 약관동의 체크
         if (!(copyEntity.getDisc_agree_a() == 1 && copyEntity.getDisc_agree_b() == 1)) {
-            System.out.println("desc err");
             copyEntity.setResult(JoinResult.FAILURE);
             return 0;
         }
 
         // 아이디 정규식 체크
-        if (Const.checkUid(entity.getUid())) {
+        if (!Const.checkUid(copyEntity.getUid())) {
             copyEntity.setResult(JoinResult.FAILURE);
             return 0;
         }
 
         // 아이디 중복 체크
-        if (mapper.selUidCount(entity) > 0) {
+        if (mapper.selUidCount(copyEntity) > 0) {
             copyEntity.setResult(JoinResult.DUPLICATE_EMAIL);
             return 0;
         }
 
         // 전화번호 중복 체크
         if (mapper.selContactCount(copyEntity) > 0) {
-            System.out.println("contact check err");
             copyEntity.setResult(JoinResult.DUPLICATE_CONTACT);
             return 0;
         }
 
         String hashUpw = BCrypt.hashpw(copyEntity.getUpw(), BCrypt.gensalt());
         copyEntity.setUpw(hashUpw);
+        copyEntity.setPlatform_cd(Const.Platform.GENERAL);
         System.out.println(hashUpw);
 
         copyEntity.setResult(JoinResult.SUCCESS);

@@ -81,6 +81,17 @@
                         <a href="/">[선택] 쇼핑정보 수신에 동의합니다.</a>
                     </div>
                 </div>
+<%--                <div id="modal" class="modal_overlay">--%>
+<%--                    <div class="modal_container">--%>
+<%--                        <div class="modal_title">--%>
+<%--                            <h2>모달</h2>--%>
+<%--                        </div>--%>
+<%--                        <div class="close_area">X</div>--%>
+<%--                        <div class="modal_content">--%>
+<%--                            <p>sddfd</p>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
             </div>
             <div class="btn_cont">
                 <input class="object_button prop_light" type="button" value="취소">
