@@ -22,21 +22,21 @@
     </select>
 
     <insert id="apiInsUser" useGeneratedKeys="true" keyProperty="iuser">
-        INSERT INTO `lagarto`.`t_user`
-            (`iuser`, `email`, `name`, `upw`)
-        VALUES (#{iuser}, #{email}, #{name}, #{upw})
+        INSERT INTO `lagarto`.`lagarto_user`
+            (`iuser`, `uid`, `nm`, `upw`)
+        VALUES (#{iuser}, #{uid}, #{nm}, #{upw})
     </insert>
 
     <select id="selUser" resultType="UserEntity">
         SELECT *
-        FROM `lagarto`.`t_user`
-        WHERE `email` = #{email}
+        FROM `lagarto`.`lagarto_user`
+        WHERE `uid` = #{uid}
     </select>
 
     <insert id="facebookPk">
-        UPDATE `lagarto`.`t_user`
+        UPDATE `lagarto`.`lagarto_user`
         SET `nickname` = #{nickname}
-        WHERE `email` = #{email};
+        WHERE `uid` = #{uid};
     </insert>
 
     <select id="loginSel" resultType="UserEntity">
@@ -48,7 +48,7 @@
 <!--현재 비밀번호 비밀번호-->
     <select id="passwordSel" resultType="UserEntity">
 --         SELECT upw FROM `lagarto`.`lagarto_user`
-        SELECT upw FROM t_user
+        SELECT upw FROM lagarto_user
         WHERE iuser = #{iuser}
     </select>
 <!--비밀번호 업데이트-->

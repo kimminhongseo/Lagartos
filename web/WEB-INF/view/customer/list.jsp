@@ -13,7 +13,7 @@
     </c:otherwise>
 </c:choose>
 <c:if test="${sessionScope.loginUser != null}">
-    <div><a href="/board/write">글쓰기</a></div>
+    <div><a href="/customer/write">글쓰기</a></div>
     <div><a href="/user/logout">로그아웃</a></div>
 </c:if>
 <div>

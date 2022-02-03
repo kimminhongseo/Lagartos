@@ -4,13 +4,13 @@
 <c:set var="action_val" value="/customer/write" />
 <c:set var="submit_val" value="WRITE" />
 <c:set var="iboard_val" value="0" />
-<c:set var="board_type_val" value="${param.board_type}" />
+<c:set var="board_cd_val" value="${param.board_cd}" />
 <c:if test="${requestScope.data != null && requestScope.data.iboard > 0}">
     <c:set var="title_val" value="수정" />
     <c:set var="action_val" value="/customer/mod" />
     <c:set var="submit_val" value="MOD" />
     <c:set var="iboard_val" value="${requestScope.data.iboard}" />
-    <c:set var="board_type_val" value="0" />
+    <c:set var="board_cd_val" value="0" />
 </c:if>
 <div>
     <form action="/customer/write" method="post">
