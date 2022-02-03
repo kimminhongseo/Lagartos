@@ -28,7 +28,6 @@ ge의 의미는 >= 부등호 표시
                     <c:otherwise><div>작성자 : ${item.writernm} </div></c:otherwise>
                 </c:choose>
 
-
                 <div class="auction_info">
                     <div>제목 : ${item.title}</div>
                     <div>내용 : ${item.ctnt}</div>

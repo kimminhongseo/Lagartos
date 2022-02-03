@@ -38,13 +38,12 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="/auction/list" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">도마뱀</a>
                         <ul class="lnb dropdown-menu">
-                            <li><a class="dropdown-item" href="/auction/list/1">1</a></li>
-                            <li><a class="dropdown-item" href="/auction/list/2">2</a></li>
-                            <li><a class="dropdown-item" href="/auction/list/3">3</a></li>
-                            <li><a class="dropdown-item" href="/auction/list/4">4</a></li>
-                            <li><a class="dropdown-item" href="/auction/list/5">5</a></li>
-                            <li><a class="dropdown-item" href="/auction/list/6">6</a></li>
-                            <li><a class="dropdown-item" href="/auction/list/7">7</a></li>
+                            <li><a class="dropdown-item" href="/auction/list/">도마뱀 전체보기</a></li>
+                            <li><a class="dropdown-item" href="/auction/list/1">리자드/모니터</a></li>
+                            <li><a class="dropdown-item" href="/auction/list/2">게코/스킨크</a></li>
+                            <li><a class="dropdown-item" href="/auction/list/3">레오파드 게코</a></li>
+                            <li><a class="dropdown-item" href="/auction/list/4">크레스티드 게코</a></li>
+                            <li><a class="dropdown-item" href="/auction/list/5">카멜레온</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
